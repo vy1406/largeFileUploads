@@ -1,5 +1,5 @@
 import { useMemo, useRef, useState } from "react"
-import { ToastContainer } from "react-toastify"
+import { toast, ToastContainer } from "react-toastify"
 import { LANGS } from "./constants"
 
 function App() {
@@ -17,7 +17,7 @@ function App() {
   }, [files]);
 
   const handleRemoveFile = () => {
-    setFiles([])
+    setFiles([]) 
     if (fileInputRef.current) {
       fileInputRef.current.value = "";
     }
@@ -33,6 +33,17 @@ function App() {
     }
   }
 
+  const handleOnTestConnection = async () => {
+    try {
+      const response = await fetch("http://localhost:3400/test")
+      const data = await response.json()
+      console.log(data)
+      toast.success(data.message)
+    } catch (error) {
+      toast.error(LANGS.TEST_FAIL)
+      console.error(error)
+    }
+  }
   return (
     <div className="container mx-auto p-4 flex flex-col items-center gap-6">
       <form onSubmit={handleOnSubmit} className="flex flex-col gap-4">
@@ -59,12 +70,9 @@ function App() {
           {LANGS.UPLOAD}
         </button>
       </form>
-      <h1 className="text-3xl font-extralight text-center">
-        Choose file
-      </h1>
       {files?.length > 0 && (
         <div className="mt-4">
-          <h2 className="text-lg font-medium">Selected Files:</h2>
+          <h2 className="text-lg font-medium">{LANGS.SELECTED}</h2>
           <ul>
             {files.map((file, index) => (
               <li key={index}>
@@ -80,6 +88,12 @@ function App() {
           )}
         </div>
       )}
+      <button
+          onClick={handleOnTestConnection}
+          className="bg-blue-500 text-white p-2 rounded mt-2"
+        >
+          {LANGS.TEST}
+        </button>
       <ToastContainer />
     </div>
   )
