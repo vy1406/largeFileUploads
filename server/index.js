@@ -45,8 +45,8 @@ app.get('/test', function (req, res) {
     res.json({ message: "Server success message" })
 })
 
-app.post("/uploadMulter", upload.single("file"), (req, res) => {
-    console.log(req.file); // File metadata
+app.post("/uploadSingleLarge", (req, res) => {
+    console.log(req.file);
     res.status(200).json({ message: "File uploaded successfully!" });
 });
 
