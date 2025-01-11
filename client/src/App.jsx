@@ -4,7 +4,7 @@ import { LANGS } from "./constants"
 
 function App() {
 
-  const [files, setFiles] = useState(null)
+  const [files, setFiles] = useState([])
   const fileInputRef = useRef(null)
 
   const handleOnUpload = (e) => {
@@ -19,7 +19,7 @@ function App() {
   const handleRemoveFile = () => {
     setFiles([])
     if (fileInputRef.current) {
-      fileInputRef.current.value = ""; 
+      fileInputRef.current.value = "";
     }
   }
 
@@ -45,6 +45,7 @@ function App() {
           onChange={handleOnUpload}
         />
         <button
+        type="button"
           onClick={handleRemoveFile}
           className="bg-red-500 text-white p-2 rounded mt-2"
         >
@@ -61,7 +62,6 @@ function App() {
       <h1 className="text-3xl font-extralight text-center">
         Choose file
       </h1>
-      <input ref={fileInputRef} type="file" name="file" id="file" onChange={handleOnUpload}/>
       {files?.length > 0 && (
         <div className="mt-4">
           <h2 className="text-lg font-medium">Selected Files:</h2>
