@@ -19,7 +19,7 @@ function SingleFileForm() {
     return file && file.size > 5000000;
   }, [file]);
 
-  const handleRemoveFile = () => {
+  const handleClear = () => {
     setFile(null)
     if (fileInputRef.current) {
       fileInputRef.current.value = "";
@@ -58,7 +58,6 @@ function SingleFileForm() {
         fetch("http://localhost:3400/uploadSingleLarge", {
           method: "POST",
           body: formData,
-
         })
           .then((response) => {
             return response.json().then((data) => {
@@ -137,7 +136,7 @@ function SingleFileForm() {
         />
         <button
           type="button"
-          onClick={handleRemoveFile}
+          onClick={handleClear}
           className="bg-red-500 text-white p-2 rounded mt-2"
         >
           {LANGS.CLEAR}

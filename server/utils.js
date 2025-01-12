@@ -7,8 +7,8 @@ const FOLDERS_MAP = {
 
 const mergeChunks = async (fileName, totalChunks) => {
 
-    const chunkDir = __dirname + FOLDERS_MAP.CHUNKS;
-    const mergedFilePath = __dirname + FOLDERS_MAP.MERGED_FILES;
+    const chunkDir = FOLDERS_MAP.CHUNKS;
+    const mergedFilePath = FOLDERS_MAP.MERGED_FILES;
 
     if (!fs.existsSync(mergedFilePath)) {
         fs.mkdirSync(mergedFilePath);

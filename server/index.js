@@ -4,6 +4,7 @@ const cors = require("cors");
 const multer = require("multer");
 const fs = require("fs");
 const { mergeChunks, createFolder, FOLDERS_MAP } = require('./utils');
+
 const PORT = 3400
 
 const storage = multer.memoryStorage();
@@ -23,11 +24,9 @@ app.post("/uploadSingleLarge", upload.single("file"), async (req, res) => {
     const totalChunks = Number(req.body.totalChunks);
     const fileName = req.body.originalname;
 
-    const chunkDir = __dirname + FOLDERS_MAP.CHUNKS;
+    createFolder(FOLDERS_MAP.CHUNKS)
 
-    createFolder(chunkDir)
-
-    const chunkFilePath = `${chunkDir}/${fileName}.part_${chunkNumber}`;
+    const chunkFilePath = `${FOLDERS_MAP.CHUNKS}/${fileName}.part_${chunkNumber}`;
 
     try {
         await fs.promises.writeFile(chunkFilePath, chunk);
@@ -45,10 +44,9 @@ app.post("/uploadSingleLarge", upload.single("file"), async (req, res) => {
 app.post("/uploadSingleSmall", upload.single("file"), (req, res) => {
     const file = req.file;
     const fileName = file.originalname;
-    const mergedFilePath = __dirname + FOLDERS_MAP.MERGED_FILES;
 
-    createFolder(mergedFilePath)
-    const filePath = `${mergedFilePath}/${fileName}`
+    createFolder(FOLDERS_MAP.MERGED_FILES)
+    const filePath = `${FOLDERS_MAP.MERGED_FILES}/${fileName}`
 
     try {
         fs.writeFileSync(filePath, file.buffer);
@@ -58,6 +56,22 @@ app.post("/uploadSingleSmall", upload.single("file"), (req, res) => {
         res.status(500).json({ message: "[Server] Error saving file" });
     }
 
+});
+
+app.post("/uploadMultipleSmall", upload.array("files"), async (req, res) => {
+    const files = req.files;
+
+    createFolder(FOLDERS_MAP.MERGED_FILES)
+
+    try {
+        files.forEach((file) => {
+            const filePath = `${FOLDERS_MAP.MERGED_FILES}/${file.originalname}`;
+            fs.writeFileSync(filePath, file.buffer);
+        });
+        res.status(200).json({ message: "Files uploaded successfully" });
+    } catch (error) {
+        res.status(500).json({ message: "[Server] Error saving files" })
+    }
 });
 
 app.listen(PORT, function () { console.log(`Server is listening on port ${PORT}`) })

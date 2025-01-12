@@ -13,11 +13,11 @@ function MultipleFilesForm() {
   }
 
   const isLargeFiles = useMemo(() => {
-    return files && files.size > 5000000;
+    return files.some((file) => file.size > 5000000);
   }, [files]);
 
-  const handleRemoveFile = () => {
-    setFiles([]) 
+  const handleClear = () => {
+    setFiles([])
     if (fileInputRef.current) {
       fileInputRef.current.value = "";
     }
@@ -25,29 +25,51 @@ function MultipleFilesForm() {
 
   const handleOnSubmit = (e) => {
     e.preventDefault()
-    const formData = new FormData()
-    formData.append("file", files[0])
 
-    if ( isLargeFiles ) {
-        uploadLargeFile()
-    } else { 
-        uploadSmallFile()
+    if (isLargeFiles) {
+      uploadLargeFiles()
+    } else {
+      uploadSmallFiles()
     }
   }
 
-  const uploadLargeFile = async () => {
+  const uploadLargeFiles = async () => {
     console.log("Upload large files with multipart")
   }
 
-  const uploadSmallFile = () => {
-    console.log("Upload small files with base64")
-  }
+  const uploadSmallFiles = () => {
+    const formData = new FormData();
+
+    files.forEach((file) => {
+      formData.append("files", file);
+    });
+
+    fetch("http://localhost:3400/uploadMultipleSmall", {
+      method: "POST",
+      body: formData,
+    })
+      .then((response) => {
+        return response.json().then((data) => {
+          if (!response.ok) {
+            toast.error(data.message);
+          }
+          return data;
+        });
+      })
+      .then(() => {
+        toast.success(LANGS.UPLOAD_SUCCESS);
+      })
+      .catch((error) => {
+        console.error("Error uploading files:", error);
+        toast.error(LANGS.UPLOAD_ERROR);
+      });
+  };
 
   return (
     <div className="container mx-auto p-4 flex flex-col items-center gap-6">
       <form onSubmit={handleOnSubmit} className="flex flex-col gap-4">
         <h1 className="text-2xl font-medium">
-            {LANGS.UPLOAD_MULTIPLE_FILES}
+          {LANGS.UPLOAD_MULTIPLE_FILES}
         </h1>
         <input
           ref={fileInputRef}
@@ -58,8 +80,8 @@ function MultipleFilesForm() {
           onChange={handleOnUpload}
         />
         <button
-        type="button"
-          onClick={handleRemoveFile}
+          type="button"
+          onClick={handleClear}
           className="bg-red-500 text-white p-2 rounded mt-2"
         >
           {LANGS.CLEAR}
@@ -90,7 +112,7 @@ function MultipleFilesForm() {
           )}
         </div>
       )}
-     
+
     </div>
   )
 }
