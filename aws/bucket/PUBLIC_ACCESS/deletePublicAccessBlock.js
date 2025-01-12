@@ -10,13 +10,11 @@ AWS.config.update({
 const s3 = new AWS.S3()
 
 const uniqueBucketName = process.env.AWS_CURRENT_BUCKET;
-var param = {
-    Bucket: uniqueBucketName
-}
-s3.getBucketCors(param, function (err, data) {
+
+s3.deletePublicAccessBlock({ Bucket: uniqueBucketName }, (err, data) => {
     if (err) {
-        console.log(err)
+        console.error("Error disabling public access block:", err);
     } else {
-        console.log(data)
+        console.log("Public access block disabled:", data);
     }
-})
+});

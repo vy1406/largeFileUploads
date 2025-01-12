@@ -9,7 +9,7 @@ AWS.config.update({
 
 const s3 = new AWS.S3()
 
-const uniqueBucketName = "my-unique-bucket-95a2cd43-97e6-461f-b852-3ab8b959401c";
+const uniqueBucketName = process.env.AWS_CURRENT_BUCKET;
 var param = {
     Bucket: uniqueBucketName,
     "CORSConfiguration": {

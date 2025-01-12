@@ -11,6 +11,7 @@ const region = 'us-east-1'
 const s3 = new AWS.S3({ region: region })
 
 const uniqueBucketName = `my-unique-bucket-${uuidv4()}`;
+
 var param = {
     Bucket: uniqueBucketName
 }

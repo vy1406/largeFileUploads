@@ -9,7 +9,7 @@ AWS.config.update({
 
 const s3 = new AWS.S3()
 
-const uniqueBucketName = "my-unique-bucket-6950ecd9-68e7-44e1-a8ce-1ac616a6b2fd";
+const uniqueBucketName = process.env.AWS_CURRENT_BUCKET;
 var param = {
     Bucket: uniqueBucketName
 }
