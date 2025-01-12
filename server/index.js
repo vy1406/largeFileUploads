@@ -74,5 +74,29 @@ app.post("/uploadMultipleSmall", upload.array("files"), async (req, res) => {
     }
 });
 
+
+app.post("/uploadMultipleLarge", upload.single("file"), async (req, res) => {
+    const chunk = req.file.buffer;
+    const chunkNumber = Number(req.body.chunkNumber);
+    const totalChunks = Number(req.body.totalChunks);
+    const fileName = req.body.originalname;
+
+    createFolder(FOLDERS_MAP.CHUNKS);
+
+    const chunkFilePath = `${FOLDERS_MAP.CHUNKS}/${fileName}.part_${chunkNumber}`;
+
+    try {
+        await fs.promises.writeFile(chunkFilePath, chunk);
+
+        if (chunkNumber === totalChunks - 1) {
+            await mergeChunks(fileName, totalChunks);
+        }
+
+        res.status(200).json({ message: "Chunk uploaded successfully" });
+    } catch (error) {
+        res.status(500).json({ message: "[Server] Error saving chunk" });
+    }
+});
+
 app.listen(PORT, function () { console.log(`Server is listening on port ${PORT}`) })
 module.exports = app;

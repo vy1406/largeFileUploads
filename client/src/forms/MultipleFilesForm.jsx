@@ -1,10 +1,12 @@
 import { useMemo, useRef, useState } from "react"
 import { toast } from "react-toastify"
 import { LANGS } from "../constants"
+import Progress from "../components/Progress";
 
 function MultipleFilesForm() {
 
   const [files, setFiles] = useState([])
+  const [progress, setProgress] = useState([]);
   const fileInputRef = useRef(null)
 
   const handleOnUpload = (e) => {
@@ -34,8 +36,55 @@ function MultipleFilesForm() {
   }
 
   const uploadLargeFiles = async () => {
-    console.log("Upload large files with multipart")
-  }
+    const chunkSize = 5 * 1024 * 1024;
+  
+    files.forEach(async (file, fileIndex) => {
+      const totalChunks = Math.ceil(file.size / chunkSize);
+      let chunkNumber = 0;
+      let start = 0;
+      let end = chunkSize;
+      const chunkProgress = 100 / totalChunks;
+  
+      const updateProgress = (fileIndex, chunkNumber) => {
+        setProgress((prev) => {
+          const updated = [...prev];
+          updated[fileIndex] = Math.min((chunkNumber + 1) * chunkProgress, 100);
+          return updated;
+        });
+      };
+
+      const uploadNextChunk = async () => {
+        if (start < file.size) {
+          const chunk = file.slice(start, end);
+          const formData = new FormData();
+          formData.append("file", chunk);
+          formData.append("chunkNumber", chunkNumber);
+          formData.append("totalChunks", totalChunks);
+          formData.append("originalname", file.name);
+  
+          try {
+            await fetch("http://localhost:3400/uploadSingleLarge", {
+              method: "POST",
+              body: formData,
+            });
+  
+            updateProgress(fileIndex, chunkNumber);
+            chunkNumber++;
+            start = end;
+            end = start + chunkSize;
+            uploadNextChunk();
+          } catch (error) {
+            toast.error(LANGS.UPLOAD_ERROR);
+            return;
+          }
+        } else {
+          toast.success(`${file.name} uploaded successfully.`);
+        }
+      };
+  
+      uploadNextChunk();
+    });
+  };
 
   const uploadSmallFiles = () => {
     const formData = new FormData();
@@ -101,6 +150,7 @@ function MultipleFilesForm() {
             {files.map((file, index) => (
               <li key={index}>
                 {file.name} - {(file.size / 1024).toFixed(2)} KB
+                <Progress progress={progress[index] || 0} />
               </li>
             ))}
           </ul>
