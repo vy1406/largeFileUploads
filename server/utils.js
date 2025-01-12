@@ -1,9 +1,14 @@
 const fs = require("fs");
 
-export const mergeChunks = async (fileName, totalChunks) => {
+const FOLDERS_MAP = {
+    CHUNKS: "chunks",
+    MERGED_FILES: "merged_files"
+}
 
-    const chunkDir = __dirname + "/chunks";
-    const mergedFilePath = __dirname + "/merged_files";
+const mergeChunks = async (fileName, totalChunks) => {
+
+    const chunkDir = __dirname + FOLDERS_MAP.CHUNKS;
+    const mergedFilePath = __dirname + FOLDERS_MAP.MERGED_FILES;
 
     if (!fs.existsSync(mergedFilePath)) {
         fs.mkdirSync(mergedFilePath);
@@ -20,3 +25,11 @@ export const mergeChunks = async (fileName, totalChunks) => {
     writeStream.end();
     console.log("Chunks merged successfully");
 };
+
+const createFolder = async (folderPath) => {
+    if (!fs.existsSync(folderPath)) {
+        fs.mkdirSync(folderPath);
+    }
+}
+
+module.exports = { mergeChunks, createFolder, FOLDERS_MAP };

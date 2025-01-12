@@ -34,11 +34,11 @@ function SingleFileForm() {
     if (isLargeFile) {
       uploadLargeFile()
     } else {
-      uploadMultipleSmallFiles()
+      uploadSmallFiles()
     }
   }
 
-  const uploadLargeFile = async () => {
+  const uploadLargeFile = () => {
     const chunkSize = 5 * 1024 * 1024;
     const totalChunks = Math.ceil(file.size / chunkSize);
     const chunkProgress = 100 / totalChunks;
@@ -58,15 +58,16 @@ function SingleFileForm() {
         fetch("http://localhost:3400/uploadSingleLarge", {
           method: "POST",
           body: formData,
+
         })
-        .then((response) => {
-          return response.json().then((data) => {
-            if (!response.ok) {
-              toast.error(data.message);
-            }
-            return data;
-          });
-        })
+          .then((response) => {
+            return response.json().then((data) => {
+              if (!response.ok) {
+                toast.error(data.message);
+              }
+              return data;
+            });
+          })
           .then((data) => {
             console.log({ data });
             const temp = `Chunk ${chunkNumber + 1}/${totalChunks} uploaded successfully`;
@@ -93,8 +94,32 @@ function SingleFileForm() {
   }
 
 
-  const uploadMultipleSmallFiles = () => {
-    console.log("Upload small file with base64")
+  const uploadSmallFiles = () => {
+    const formData = new FormData();
+    formData.append('file', file);
+
+    try {
+
+      fetch("http://localhost:3400/uploadSingleSmall", {
+        method: "POST",
+        body: formData,
+
+      }).then((response) => {
+        return response.json().then((data) => {
+          if (!response.ok) {
+            toast.error(data.message);
+          }
+          return data;
+        });
+      }).then((data) => {
+        console.log({ data });
+        toast.success(LANGS.UPLOAD_SUCCESS);
+      });
+    } catch (error) {
+      console.error("Error uploading file:", error);
+      toast.error(LANGS.UPLOAD_ERROR);
+    }
+
   }
 
   return (
