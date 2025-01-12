@@ -6,7 +6,8 @@ const uniqueBucketName = process.env.AWS_CURRENT_BUCKET;
 var param = {
     Bucket: uniqueBucketName
 }
-s3.deleteBucketCors(param, function (err, data) {
+
+s3.getBucketAcl(param, function (err, data) {
     if (err) {
         console.log(err)
     } else {
