@@ -218,7 +218,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/aws-multipard-upload/dev/1736796089308-2025-01-13T19:21:29.308Z/aws-multipard-upload.zip"
+          "S3Key": "serverless/aws-multipard-upload/dev/1736802864638-2025-01-13T21:14:24.638Z/aws-multipard-upload.zip"
         },
         "Handler": "API/putObject.handler",
         "Runtime": "nodejs18.x",
@@ -248,7 +248,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/aws-multipard-upload/dev/1736796089308-2025-01-13T19:21:29.308Z/aws-multipard-upload.zip"
+          "S3Key": "serverless/aws-multipard-upload/dev/1736802864638-2025-01-13T21:14:24.638Z/aws-multipard-upload.zip"
         },
         "Handler": "handler.hello",
         "Runtime": "nodejs18.x",
@@ -278,7 +278,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/aws-multipard-upload/dev/1736796089308-2025-01-13T19:21:29.308Z/aws-multipard-upload.zip"
+          "S3Key": "serverless/aws-multipard-upload/dev/1736802864638-2025-01-13T21:14:24.638Z/aws-multipard-upload.zip"
         },
         "Handler": "handler.putObject",
         "Runtime": "nodejs18.x",
@@ -308,7 +308,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/aws-multipard-upload/dev/1736796089308-2025-01-13T19:21:29.308Z/aws-multipard-upload.zip"
+          "S3Key": "serverless/aws-multipard-upload/dev/1736802864638-2025-01-13T21:14:24.638Z/aws-multipard-upload.zip"
         },
         "Handler": "objects/API/putObject.handler",
         "Runtime": "nodejs18.x",
@@ -338,7 +338,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/aws-multipard-upload/dev/1736796089308-2025-01-13T19:21:29.308Z/aws-multipard-upload.zip"
+          "S3Key": "serverless/aws-multipard-upload/dev/1736802864638-2025-01-13T21:14:24.638Z/aws-multipard-upload.zip"
         },
         "Handler": "objects/API/putPreSignedUrl.handler",
         "Runtime": "nodejs18.x",
@@ -368,7 +368,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/aws-multipard-upload/dev/1736796089308-2025-01-13T19:21:29.308Z/aws-multipard-upload.zip"
+          "S3Key": "serverless/aws-multipard-upload/dev/1736802864638-2025-01-13T21:14:24.638Z/aws-multipard-upload.zip"
         },
         "Handler": "objects/API/MULTIPART/createMultipartUpload.handler",
         "Runtime": "nodejs18.x",
@@ -398,7 +398,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/aws-multipard-upload/dev/1736796089308-2025-01-13T19:21:29.308Z/aws-multipard-upload.zip"
+          "S3Key": "serverless/aws-multipard-upload/dev/1736802864638-2025-01-13T21:14:24.638Z/aws-multipard-upload.zip"
         },
         "Handler": "objects/API/MULTIPART/getUploadPart.handler",
         "Runtime": "nodejs18.x",
@@ -428,7 +428,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/aws-multipard-upload/dev/1736796089308-2025-01-13T19:21:29.308Z/aws-multipard-upload.zip"
+          "S3Key": "serverless/aws-multipard-upload/dev/1736802864638-2025-01-13T21:14:24.638Z/aws-multipard-upload.zip"
         },
         "Handler": "objects/API/MULTIPART/completeMultipartUpload.handler",
         "Runtime": "nodejs18.x",
@@ -458,7 +458,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/aws-multipard-upload/dev/1736796089308-2025-01-13T19:21:29.308Z/aws-multipard-upload.zip"
+          "S3Key": "serverless/aws-multipard-upload/dev/1736802864638-2025-01-13T21:14:24.638Z/aws-multipard-upload.zip"
         },
         "Handler": "objects/API/MULTIPART/abortMultipartUpload.handler",
         "Runtime": "nodejs18.x",
@@ -481,94 +481,94 @@
         "AbortMultipartUploadLogGroup"
       ]
     },
-    "PutObjectLambdaVersionISkwOlz5qAuNZoUYxnKnmG9AgLAQeLL0X1yCauylSc0": {
+    "PutObjectLambdaVersion0kqkkVdougHWmPlxCzfZrvZK96lANEPpc9fViSJQ": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "PutObjectLambdaFunction"
         },
-        "CodeSha256": "3PI8cAOX5b9Con66RVLGi61DA1gsC//Zmulf/AmmEn8="
+        "CodeSha256": "H5aD36Bk0UQEtQMRC2dDaOSKmU+iMxgMWeZ+tEZe4jE="
       }
     },
-    "HelloLambdaVersionK1o7UKqelhEsFjKX6AJUpKFWvb6Set6G5dDjrU1oTw": {
+    "HelloLambdaVersionFAOprFJe94Hf7Y8K5Tazu1TBQo83O6lZP6947UCk": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "HelloLambdaFunction"
         },
-        "CodeSha256": "3PI8cAOX5b9Con66RVLGi61DA1gsC//Zmulf/AmmEn8="
+        "CodeSha256": "H5aD36Bk0UQEtQMRC2dDaOSKmU+iMxgMWeZ+tEZe4jE="
       }
     },
-    "PutObject2LambdaVersion7IxmOApdSksDSVzOuxa6whjjqF4nc50oyj9iCUo9Lk": {
+    "PutObject2LambdaVersionvvR6LRUp6243SnGzx1Wyt31avhAw3MSHtMCAIZY": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "PutObject2LambdaFunction"
         },
-        "CodeSha256": "3PI8cAOX5b9Con66RVLGi61DA1gsC//Zmulf/AmmEn8="
+        "CodeSha256": "H5aD36Bk0UQEtQMRC2dDaOSKmU+iMxgMWeZ+tEZe4jE="
       }
     },
-    "PutObject3LambdaVersionwfb6lenPjsi8sp9dBbwV4JxxKUNyHqifKRqBd3WIEvs": {
+    "PutObject3LambdaVersionOHnw05Z2FdBlC3ZDjOHh6Q9IxlQTU1ac19L3G8ktM": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "PutObject3LambdaFunction"
         },
-        "CodeSha256": "3PI8cAOX5b9Con66RVLGi61DA1gsC//Zmulf/AmmEn8="
+        "CodeSha256": "H5aD36Bk0UQEtQMRC2dDaOSKmU+iMxgMWeZ+tEZe4jE="
       }
     },
-    "PreSignedUrlLambdaVersionVnfqB5GJhg4uQd8BBBySPoVQ1eWCI356e169dTyViUA": {
+    "PreSignedUrlLambdaVersionnwerkkSruckfoLAccuKI7pysFLQxFT0eXQ6u1GToiE": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "PreSignedUrlLambdaFunction"
         },
-        "CodeSha256": "3PI8cAOX5b9Con66RVLGi61DA1gsC//Zmulf/AmmEn8="
+        "CodeSha256": "H5aD36Bk0UQEtQMRC2dDaOSKmU+iMxgMWeZ+tEZe4jE="
       }
     },
-    "GetUploadIdLambdaVersiongN3Oc7khGvRgMmtT1RrmGiF4ZAW8Gr0rjWZeYpujs": {
+    "GetUploadIdLambdaVersion6AcSP1pehY2BQwWaVFMYzclcEqPFapM7kBqD4ySow": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "GetUploadIdLambdaFunction"
         },
-        "CodeSha256": "3PI8cAOX5b9Con66RVLGi61DA1gsC//Zmulf/AmmEn8="
+        "CodeSha256": "H5aD36Bk0UQEtQMRC2dDaOSKmU+iMxgMWeZ+tEZe4jE="
       }
     },
-    "GetUploadPartLambdaVersionUsLWQSWNwgnv4IfMIpgHb8c9bgElNNmJHqqyzYTw": {
+    "GetUploadPartLambdaVersionSr4Bi9ZqcVkhotO1Jxxr1rzcQr3ZF43KeGUbwgxvuaM": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "GetUploadPartLambdaFunction"
         },
-        "CodeSha256": "3PI8cAOX5b9Con66RVLGi61DA1gsC//Zmulf/AmmEn8="
+        "CodeSha256": "H5aD36Bk0UQEtQMRC2dDaOSKmU+iMxgMWeZ+tEZe4jE="
       }
     },
-    "CompleteMultipartUploadLambdaVersiona7dLL5Q1HZjcmALjzooPmew5ghbmEKSCBQJ0qSuQ6U": {
+    "CompleteMultipartUploadLambdaVersionDwoUsMUNIFDxoSs6alurBrqkJfNYp3Ecc1hbybOraTc": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "CompleteMultipartUploadLambdaFunction"
         },
-        "CodeSha256": "3PI8cAOX5b9Con66RVLGi61DA1gsC//Zmulf/AmmEn8="
+        "CodeSha256": "H5aD36Bk0UQEtQMRC2dDaOSKmU+iMxgMWeZ+tEZe4jE="
       }
     },
-    "AbortMultipartUploadLambdaVersionwHJE7JdgXVMptf6w02T5Me0QSxxeeWoKJx1LluRzdZw": {
+    "AbortMultipartUploadLambdaVersionwnHDFUtfXej0JVkpD57wMUpPbQYWaI6lx71EiPQQM": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "AbortMultipartUploadLambdaFunction"
         },
-        "CodeSha256": "3PI8cAOX5b9Con66RVLGi61DA1gsC//Zmulf/AmmEn8="
+        "CodeSha256": "H5aD36Bk0UQEtQMRC2dDaOSKmU+iMxgMWeZ+tEZe4jE="
       }
     },
     "ApiGatewayRestApi": {
@@ -1510,7 +1510,7 @@
         "MethodResponses": []
       }
     },
-    "ApiGatewayDeployment1736796083714": {
+    "ApiGatewayDeployment1736802858367": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -1910,55 +1910,55 @@
     "PutObjectLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "PutObjectLambdaVersionISkwOlz5qAuNZoUYxnKnmG9AgLAQeLL0X1yCauylSc0"
+        "Ref": "PutObjectLambdaVersion0kqkkVdougHWmPlxCzfZrvZK96lANEPpc9fViSJQ"
       }
     },
     "HelloLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "HelloLambdaVersionK1o7UKqelhEsFjKX6AJUpKFWvb6Set6G5dDjrU1oTw"
+        "Ref": "HelloLambdaVersionFAOprFJe94Hf7Y8K5Tazu1TBQo83O6lZP6947UCk"
       }
     },
     "PutObject2LambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "PutObject2LambdaVersion7IxmOApdSksDSVzOuxa6whjjqF4nc50oyj9iCUo9Lk"
+        "Ref": "PutObject2LambdaVersionvvR6LRUp6243SnGzx1Wyt31avhAw3MSHtMCAIZY"
       }
     },
     "PutObject3LambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "PutObject3LambdaVersionwfb6lenPjsi8sp9dBbwV4JxxKUNyHqifKRqBd3WIEvs"
+        "Ref": "PutObject3LambdaVersionOHnw05Z2FdBlC3ZDjOHh6Q9IxlQTU1ac19L3G8ktM"
       }
     },
     "PreSignedUrlLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "PreSignedUrlLambdaVersionVnfqB5GJhg4uQd8BBBySPoVQ1eWCI356e169dTyViUA"
+        "Ref": "PreSignedUrlLambdaVersionnwerkkSruckfoLAccuKI7pysFLQxFT0eXQ6u1GToiE"
       }
     },
     "GetUploadIdLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "GetUploadIdLambdaVersiongN3Oc7khGvRgMmtT1RrmGiF4ZAW8Gr0rjWZeYpujs"
+        "Ref": "GetUploadIdLambdaVersion6AcSP1pehY2BQwWaVFMYzclcEqPFapM7kBqD4ySow"
       }
     },
     "GetUploadPartLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "GetUploadPartLambdaVersionUsLWQSWNwgnv4IfMIpgHb8c9bgElNNmJHqqyzYTw"
+        "Ref": "GetUploadPartLambdaVersionSr4Bi9ZqcVkhotO1Jxxr1rzcQr3ZF43KeGUbwgxvuaM"
       }
     },
     "CompleteMultipartUploadLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "CompleteMultipartUploadLambdaVersiona7dLL5Q1HZjcmALjzooPmew5ghbmEKSCBQJ0qSuQ6U"
+        "Ref": "CompleteMultipartUploadLambdaVersionDwoUsMUNIFDxoSs6alurBrqkJfNYp3Ecc1hbybOraTc"
       }
     },
     "AbortMultipartUploadLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "AbortMultipartUploadLambdaVersionwHJE7JdgXVMptf6w02T5Me0QSxxeeWoKJx1LluRzdZw"
+        "Ref": "AbortMultipartUploadLambdaVersionwnHDFUtfXej0JVkpD57wMUpPbQYWaI6lx71EiPQQM"
       }
     },
     "ServiceEndpoint": {

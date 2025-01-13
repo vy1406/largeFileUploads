@@ -4,7 +4,7 @@ document.getElementById('putObjectBtn').addEventListener('click', () => {
     const fileName = file.name;
 
     const reader = new FileReader();
-    const url = CONFIG.API_URL_BASE + "putObject3";
+    const url = CONFIG.API_URL_BASE + "putObject2";
 
     const config = {
         onUploadProgress: (progressEvent) =>
