@@ -1,0 +1,9 @@
+chunks
+merged_files
+node_modules
+dist
+steps.txt
+medium.txt
+.env
+env.js
+frontend.env.js
