@@ -3,10 +3,10 @@ document.getElementById('abortUploadBtn').addEventListener('click', () => {
     const file = multipartInput_fileInput.files[0];
     const fileName = file.name;
     const uploadId = sessionStorage.getItem('uploadId');
-    const url = CONFIG.API_URL_BASE;
+    const url = CONFIG.API_URL_BASE + 'abortUpload';
     console.log({ fileName: fileName, uploadId: uploadId });
     axios
-        .post(`${url}/abortUpload`, { fileName: fileName, uploadId: uploadId })
+        .post(url, { fileName: fileName, uploadId: uploadId })
         .then((r) => console.log(r))
         .catch((err) => console.error(err));
     clearInterval();

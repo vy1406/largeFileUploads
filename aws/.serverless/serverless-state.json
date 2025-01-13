@@ -136,6 +136,30 @@
               "LogGroupName": "/aws/lambda/aws-multipard-upload-dev-preSignedUrl"
             }
           },
+          "GetUploadIdLogGroup": {
+            "Type": "AWS::Logs::LogGroup",
+            "Properties": {
+              "LogGroupName": "/aws/lambda/aws-multipard-upload-dev-getUploadId"
+            }
+          },
+          "GetUploadPartLogGroup": {
+            "Type": "AWS::Logs::LogGroup",
+            "Properties": {
+              "LogGroupName": "/aws/lambda/aws-multipard-upload-dev-getUploadPart"
+            }
+          },
+          "CompleteMultipartUploadLogGroup": {
+            "Type": "AWS::Logs::LogGroup",
+            "Properties": {
+              "LogGroupName": "/aws/lambda/aws-multipard-upload-dev-completeMultipartUpload"
+            }
+          },
+          "AbortMultipartUploadLogGroup": {
+            "Type": "AWS::Logs::LogGroup",
+            "Properties": {
+              "LogGroupName": "/aws/lambda/aws-multipard-upload-dev-abortMultipartUpload"
+            }
+          },
           "IamRoleLambdaExecution": {
             "Type": "AWS::IAM::Role",
             "Properties": {
@@ -223,7 +247,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/aws-multipard-upload/dev/1736788507166-2025-01-13T17:15:07.166Z/aws-multipard-upload.zip"
+                "S3Key": "serverless/aws-multipard-upload/dev/1736794806627-2025-01-13T19:00:06.627Z/aws-multipard-upload.zip"
               },
               "Handler": "API/putObject.handler",
               "Runtime": "nodejs18.x",
@@ -253,7 +277,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/aws-multipard-upload/dev/1736788507166-2025-01-13T17:15:07.166Z/aws-multipard-upload.zip"
+                "S3Key": "serverless/aws-multipard-upload/dev/1736794806627-2025-01-13T19:00:06.627Z/aws-multipard-upload.zip"
               },
               "Handler": "handler.hello",
               "Runtime": "nodejs18.x",
@@ -283,7 +307,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/aws-multipard-upload/dev/1736788507166-2025-01-13T17:15:07.166Z/aws-multipard-upload.zip"
+                "S3Key": "serverless/aws-multipard-upload/dev/1736794806627-2025-01-13T19:00:06.627Z/aws-multipard-upload.zip"
               },
               "Handler": "handler.putObject",
               "Runtime": "nodejs18.x",
@@ -313,7 +337,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/aws-multipard-upload/dev/1736788507166-2025-01-13T17:15:07.166Z/aws-multipard-upload.zip"
+                "S3Key": "serverless/aws-multipard-upload/dev/1736794806627-2025-01-13T19:00:06.627Z/aws-multipard-upload.zip"
               },
               "Handler": "objects/API/putObject.handler",
               "Runtime": "nodejs18.x",
@@ -343,7 +367,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/aws-multipard-upload/dev/1736788507166-2025-01-13T17:15:07.166Z/aws-multipard-upload.zip"
+                "S3Key": "serverless/aws-multipard-upload/dev/1736794806627-2025-01-13T19:00:06.627Z/aws-multipard-upload.zip"
               },
               "Handler": "objects/API/putPreSignedUrl.handler",
               "Runtime": "nodejs18.x",
@@ -366,54 +390,214 @@
               "PreSignedUrlLogGroup"
             ]
           },
-          "PutObjectLambdaVersionrnV6Be6Nls1eroZjteXe8v8h6qomqn30usIGV6dABU": {
+          "GetUploadIdLambdaFunction": {
+            "Type": "AWS::Lambda::Function",
+            "Properties": {
+              "Code": {
+                "S3Bucket": {
+                  "Ref": "ServerlessDeploymentBucket"
+                },
+                "S3Key": "serverless/aws-multipard-upload/dev/1736794806627-2025-01-13T19:00:06.627Z/aws-multipard-upload.zip"
+              },
+              "Handler": "objects/API/MULTIPART/createMultipartUpload.handler",
+              "Runtime": "nodejs18.x",
+              "FunctionName": "aws-multipard-upload-dev-getUploadId",
+              "MemorySize": 1024,
+              "Timeout": 6,
+              "Environment": {
+                "Variables": {
+                  "bucketName": "vladimir-unique-bucket-yaml-file"
+                }
+              },
+              "Role": {
+                "Fn::GetAtt": [
+                  "IamRoleLambdaExecution",
+                  "Arn"
+                ]
+              }
+            },
+            "DependsOn": [
+              "GetUploadIdLogGroup"
+            ]
+          },
+          "GetUploadPartLambdaFunction": {
+            "Type": "AWS::Lambda::Function",
+            "Properties": {
+              "Code": {
+                "S3Bucket": {
+                  "Ref": "ServerlessDeploymentBucket"
+                },
+                "S3Key": "serverless/aws-multipard-upload/dev/1736794806627-2025-01-13T19:00:06.627Z/aws-multipard-upload.zip"
+              },
+              "Handler": "objects/API/MULTIPART/getUploadPart.handler",
+              "Runtime": "nodejs18.x",
+              "FunctionName": "aws-multipard-upload-dev-getUploadPart",
+              "MemorySize": 1024,
+              "Timeout": 6,
+              "Environment": {
+                "Variables": {
+                  "bucketName": "vladimir-unique-bucket-yaml-file"
+                }
+              },
+              "Role": {
+                "Fn::GetAtt": [
+                  "IamRoleLambdaExecution",
+                  "Arn"
+                ]
+              }
+            },
+            "DependsOn": [
+              "GetUploadPartLogGroup"
+            ]
+          },
+          "CompleteMultipartUploadLambdaFunction": {
+            "Type": "AWS::Lambda::Function",
+            "Properties": {
+              "Code": {
+                "S3Bucket": {
+                  "Ref": "ServerlessDeploymentBucket"
+                },
+                "S3Key": "serverless/aws-multipard-upload/dev/1736794806627-2025-01-13T19:00:06.627Z/aws-multipard-upload.zip"
+              },
+              "Handler": "objects/API/MULTIPART/completeMultipartUpload.handler",
+              "Runtime": "nodejs18.x",
+              "FunctionName": "aws-multipard-upload-dev-completeMultipartUpload",
+              "MemorySize": 1024,
+              "Timeout": 6,
+              "Environment": {
+                "Variables": {
+                  "bucketName": "vladimir-unique-bucket-yaml-file"
+                }
+              },
+              "Role": {
+                "Fn::GetAtt": [
+                  "IamRoleLambdaExecution",
+                  "Arn"
+                ]
+              }
+            },
+            "DependsOn": [
+              "CompleteMultipartUploadLogGroup"
+            ]
+          },
+          "AbortMultipartUploadLambdaFunction": {
+            "Type": "AWS::Lambda::Function",
+            "Properties": {
+              "Code": {
+                "S3Bucket": {
+                  "Ref": "ServerlessDeploymentBucket"
+                },
+                "S3Key": "serverless/aws-multipard-upload/dev/1736794806627-2025-01-13T19:00:06.627Z/aws-multipard-upload.zip"
+              },
+              "Handler": "objects/API/multiPartUpload/abortMultipartUpload.handler",
+              "Runtime": "nodejs18.x",
+              "FunctionName": "aws-multipard-upload-dev-abortMultipartUpload",
+              "MemorySize": 1024,
+              "Timeout": 6,
+              "Environment": {
+                "Variables": {
+                  "bucketName": "vladimir-unique-bucket-yaml-file"
+                }
+              },
+              "Role": {
+                "Fn::GetAtt": [
+                  "IamRoleLambdaExecution",
+                  "Arn"
+                ]
+              }
+            },
+            "DependsOn": [
+              "AbortMultipartUploadLogGroup"
+            ]
+          },
+          "PutObjectLambdaVersionISkwOlz5qAuNZoUYxnKnmG9AgLAQeLL0X1yCauylSc0": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "PutObjectLambdaFunction"
               },
-              "CodeSha256": "BMXsHzS3dWo5vSkM8QftdOpfiVOYeiSVLcCVCKOZaXE="
+              "CodeSha256": "3PI8cAOX5b9Con66RVLGi61DA1gsC//Zmulf/AmmEn8="
             }
           },
-          "HelloLambdaVersionU7dxXYJqzArC0ap88jhhHcksuCZFc6JeKqtufmXDM": {
+          "HelloLambdaVersionK1o7UKqelhEsFjKX6AJUpKFWvb6Set6G5dDjrU1oTw": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "HelloLambdaFunction"
               },
-              "CodeSha256": "BMXsHzS3dWo5vSkM8QftdOpfiVOYeiSVLcCVCKOZaXE="
+              "CodeSha256": "3PI8cAOX5b9Con66RVLGi61DA1gsC//Zmulf/AmmEn8="
             }
           },
-          "PutObject2LambdaVersioneBufeZ9DL5e8hk0eoFfhinB4JZx6oXTw36ChKyx5G2o": {
+          "PutObject2LambdaVersion7IxmOApdSksDSVzOuxa6whjjqF4nc50oyj9iCUo9Lk": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "PutObject2LambdaFunction"
               },
-              "CodeSha256": "BMXsHzS3dWo5vSkM8QftdOpfiVOYeiSVLcCVCKOZaXE="
+              "CodeSha256": "3PI8cAOX5b9Con66RVLGi61DA1gsC//Zmulf/AmmEn8="
             }
           },
-          "PutObject3LambdaVersionMxQdXzbKU7c5T4wYqzIDZLuQW7A2TfCT51ertnCjA": {
+          "PutObject3LambdaVersionwfb6lenPjsi8sp9dBbwV4JxxKUNyHqifKRqBd3WIEvs": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "PutObject3LambdaFunction"
               },
-              "CodeSha256": "BMXsHzS3dWo5vSkM8QftdOpfiVOYeiSVLcCVCKOZaXE="
+              "CodeSha256": "3PI8cAOX5b9Con66RVLGi61DA1gsC//Zmulf/AmmEn8="
             }
           },
-          "PreSignedUrlLambdaVersiondwpNmQOKX7BK2SmQV22bi2gze9uThPlKNYGIdckns": {
+          "PreSignedUrlLambdaVersionVnfqB5GJhg4uQd8BBBySPoVQ1eWCI356e169dTyViUA": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "PreSignedUrlLambdaFunction"
               },
-              "CodeSha256": "BMXsHzS3dWo5vSkM8QftdOpfiVOYeiSVLcCVCKOZaXE="
+              "CodeSha256": "3PI8cAOX5b9Con66RVLGi61DA1gsC//Zmulf/AmmEn8="
+            }
+          },
+          "GetUploadIdLambdaVersiongN3Oc7khGvRgMmtT1RrmGiF4ZAW8Gr0rjWZeYpujs": {
+            "Type": "AWS::Lambda::Version",
+            "DeletionPolicy": "Retain",
+            "Properties": {
+              "FunctionName": {
+                "Ref": "GetUploadIdLambdaFunction"
+              },
+              "CodeSha256": "3PI8cAOX5b9Con66RVLGi61DA1gsC//Zmulf/AmmEn8="
+            }
+          },
+          "GetUploadPartLambdaVersionUsLWQSWNwgnv4IfMIpgHb8c9bgElNNmJHqqyzYTw": {
+            "Type": "AWS::Lambda::Version",
+            "DeletionPolicy": "Retain",
+            "Properties": {
+              "FunctionName": {
+                "Ref": "GetUploadPartLambdaFunction"
+              },
+              "CodeSha256": "3PI8cAOX5b9Con66RVLGi61DA1gsC//Zmulf/AmmEn8="
+            }
+          },
+          "CompleteMultipartUploadLambdaVersiona7dLL5Q1HZjcmALjzooPmew5ghbmEKSCBQJ0qSuQ6U": {
+            "Type": "AWS::Lambda::Version",
+            "DeletionPolicy": "Retain",
+            "Properties": {
+              "FunctionName": {
+                "Ref": "CompleteMultipartUploadLambdaFunction"
+              },
+              "CodeSha256": "3PI8cAOX5b9Con66RVLGi61DA1gsC//Zmulf/AmmEn8="
+            }
+          },
+          "AbortMultipartUploadLambdaVersioncRBg9aRY4ArywP2wkpt1wPMzt5Ziu8Uhoh02gRg34": {
+            "Type": "AWS::Lambda::Version",
+            "DeletionPolicy": "Retain",
+            "Properties": {
+              "FunctionName": {
+                "Ref": "AbortMultipartUploadLambdaFunction"
+              },
+              "CodeSha256": "3PI8cAOX5b9Con66RVLGi61DA1gsC//Zmulf/AmmEn8="
             }
           },
           "ApiGatewayRestApi": {
@@ -498,6 +682,66 @@
                 ]
               },
               "PathPart": "getSignedUrl",
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              }
+            }
+          },
+          "ApiGatewayResourceGetuploadid": {
+            "Type": "AWS::ApiGateway::Resource",
+            "Properties": {
+              "ParentId": {
+                "Fn::GetAtt": [
+                  "ApiGatewayRestApi",
+                  "RootResourceId"
+                ]
+              },
+              "PathPart": "getUploadId",
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              }
+            }
+          },
+          "ApiGatewayResourceGetuploadpart": {
+            "Type": "AWS::ApiGateway::Resource",
+            "Properties": {
+              "ParentId": {
+                "Fn::GetAtt": [
+                  "ApiGatewayRestApi",
+                  "RootResourceId"
+                ]
+              },
+              "PathPart": "getUploadPart",
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              }
+            }
+          },
+          "ApiGatewayResourceCompleteupload": {
+            "Type": "AWS::ApiGateway::Resource",
+            "Properties": {
+              "ParentId": {
+                "Fn::GetAtt": [
+                  "ApiGatewayRestApi",
+                  "RootResourceId"
+                ]
+              },
+              "PathPart": "completeUpload",
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              }
+            }
+          },
+          "ApiGatewayResourceAbortupload": {
+            "Type": "AWS::ApiGateway::Resource",
+            "Properties": {
+              "ParentId": {
+                "Fn::GetAtt": [
+                  "ApiGatewayRestApi",
+                  "RootResourceId"
+                ]
+              },
+              "PathPart": "abortUpload",
               "RestApiId": {
                 "Ref": "ApiGatewayRestApi"
               }
@@ -728,6 +972,186 @@
               }
             }
           },
+          "ApiGatewayMethodGetuploadidOptions": {
+            "Type": "AWS::ApiGateway::Method",
+            "Properties": {
+              "AuthorizationType": "NONE",
+              "HttpMethod": "OPTIONS",
+              "MethodResponses": [
+                {
+                  "StatusCode": "200",
+                  "ResponseParameters": {
+                    "method.response.header.Access-Control-Allow-Origin": true,
+                    "method.response.header.Access-Control-Allow-Headers": true,
+                    "method.response.header.Access-Control-Allow-Methods": true
+                  },
+                  "ResponseModels": {}
+                }
+              ],
+              "RequestParameters": {},
+              "Integration": {
+                "Type": "MOCK",
+                "RequestTemplates": {
+                  "application/json": "{statusCode:200}"
+                },
+                "ContentHandling": "CONVERT_TO_TEXT",
+                "IntegrationResponses": [
+                  {
+                    "StatusCode": "200",
+                    "ResponseParameters": {
+                      "method.response.header.Access-Control-Allow-Origin": "'*'",
+                      "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+                      "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,POST'"
+                    },
+                    "ResponseTemplates": {
+                      "application/json": "#set($origin = $input.params(\"Origin\"))\n#if($origin == \"\") #set($origin = $input.params(\"origin\")) #end\n#if($origin.matches(\".+\")) #set($context.responseOverride.header.Access-Control-Allow-Origin = $origin) #end"
+                    }
+                  }
+                ]
+              },
+              "ResourceId": {
+                "Ref": "ApiGatewayResourceGetuploadid"
+              },
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              }
+            }
+          },
+          "ApiGatewayMethodGetuploadpartOptions": {
+            "Type": "AWS::ApiGateway::Method",
+            "Properties": {
+              "AuthorizationType": "NONE",
+              "HttpMethod": "OPTIONS",
+              "MethodResponses": [
+                {
+                  "StatusCode": "200",
+                  "ResponseParameters": {
+                    "method.response.header.Access-Control-Allow-Origin": true,
+                    "method.response.header.Access-Control-Allow-Headers": true,
+                    "method.response.header.Access-Control-Allow-Methods": true
+                  },
+                  "ResponseModels": {}
+                }
+              ],
+              "RequestParameters": {},
+              "Integration": {
+                "Type": "MOCK",
+                "RequestTemplates": {
+                  "application/json": "{statusCode:200}"
+                },
+                "ContentHandling": "CONVERT_TO_TEXT",
+                "IntegrationResponses": [
+                  {
+                    "StatusCode": "200",
+                    "ResponseParameters": {
+                      "method.response.header.Access-Control-Allow-Origin": "'*'",
+                      "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+                      "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,POST'"
+                    },
+                    "ResponseTemplates": {
+                      "application/json": "#set($origin = $input.params(\"Origin\"))\n#if($origin == \"\") #set($origin = $input.params(\"origin\")) #end\n#if($origin.matches(\".+\")) #set($context.responseOverride.header.Access-Control-Allow-Origin = $origin) #end"
+                    }
+                  }
+                ]
+              },
+              "ResourceId": {
+                "Ref": "ApiGatewayResourceGetuploadpart"
+              },
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              }
+            }
+          },
+          "ApiGatewayMethodCompleteuploadOptions": {
+            "Type": "AWS::ApiGateway::Method",
+            "Properties": {
+              "AuthorizationType": "NONE",
+              "HttpMethod": "OPTIONS",
+              "MethodResponses": [
+                {
+                  "StatusCode": "200",
+                  "ResponseParameters": {
+                    "method.response.header.Access-Control-Allow-Origin": true,
+                    "method.response.header.Access-Control-Allow-Headers": true,
+                    "method.response.header.Access-Control-Allow-Methods": true
+                  },
+                  "ResponseModels": {}
+                }
+              ],
+              "RequestParameters": {},
+              "Integration": {
+                "Type": "MOCK",
+                "RequestTemplates": {
+                  "application/json": "{statusCode:200}"
+                },
+                "ContentHandling": "CONVERT_TO_TEXT",
+                "IntegrationResponses": [
+                  {
+                    "StatusCode": "200",
+                    "ResponseParameters": {
+                      "method.response.header.Access-Control-Allow-Origin": "'*'",
+                      "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+                      "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,POST'"
+                    },
+                    "ResponseTemplates": {
+                      "application/json": "#set($origin = $input.params(\"Origin\"))\n#if($origin == \"\") #set($origin = $input.params(\"origin\")) #end\n#if($origin.matches(\".+\")) #set($context.responseOverride.header.Access-Control-Allow-Origin = $origin) #end"
+                    }
+                  }
+                ]
+              },
+              "ResourceId": {
+                "Ref": "ApiGatewayResourceCompleteupload"
+              },
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              }
+            }
+          },
+          "ApiGatewayMethodAbortuploadOptions": {
+            "Type": "AWS::ApiGateway::Method",
+            "Properties": {
+              "AuthorizationType": "NONE",
+              "HttpMethod": "OPTIONS",
+              "MethodResponses": [
+                {
+                  "StatusCode": "200",
+                  "ResponseParameters": {
+                    "method.response.header.Access-Control-Allow-Origin": true,
+                    "method.response.header.Access-Control-Allow-Headers": true,
+                    "method.response.header.Access-Control-Allow-Methods": true
+                  },
+                  "ResponseModels": {}
+                }
+              ],
+              "RequestParameters": {},
+              "Integration": {
+                "Type": "MOCK",
+                "RequestTemplates": {
+                  "application/json": "{statusCode:200}"
+                },
+                "ContentHandling": "CONVERT_TO_TEXT",
+                "IntegrationResponses": [
+                  {
+                    "StatusCode": "200",
+                    "ResponseParameters": {
+                      "method.response.header.Access-Control-Allow-Origin": "'*'",
+                      "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+                      "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,POST'"
+                    },
+                    "ResponseTemplates": {
+                      "application/json": "#set($origin = $input.params(\"Origin\"))\n#if($origin == \"\") #set($origin = $input.params(\"origin\")) #end\n#if($origin.matches(\".+\")) #set($context.responseOverride.header.Access-Control-Allow-Origin = $origin) #end"
+                    }
+                  }
+                ]
+              },
+              "ResourceId": {
+                "Ref": "ApiGatewayResourceAbortupload"
+              },
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              }
+            }
+          },
           "ApiGatewayMethodPutobjectPost": {
             "Type": "AWS::ApiGateway::Method",
             "Properties": {
@@ -943,7 +1367,179 @@
               "MethodResponses": []
             }
           },
-          "ApiGatewayDeployment1736788502023": {
+          "ApiGatewayMethodGetuploadidPost": {
+            "Type": "AWS::ApiGateway::Method",
+            "Properties": {
+              "HttpMethod": "POST",
+              "RequestParameters": {},
+              "ResourceId": {
+                "Ref": "ApiGatewayResourceGetuploadid"
+              },
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              },
+              "ApiKeyRequired": false,
+              "AuthorizationType": "NONE",
+              "Integration": {
+                "IntegrationHttpMethod": "POST",
+                "Type": "AWS_PROXY",
+                "Uri": {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":apigateway:",
+                      {
+                        "Ref": "AWS::Region"
+                      },
+                      ":lambda:path/2015-03-31/functions/",
+                      {
+                        "Fn::GetAtt": [
+                          "GetUploadIdLambdaFunction",
+                          "Arn"
+                        ]
+                      },
+                      "/invocations"
+                    ]
+                  ]
+                }
+              },
+              "MethodResponses": []
+            }
+          },
+          "ApiGatewayMethodGetuploadpartPost": {
+            "Type": "AWS::ApiGateway::Method",
+            "Properties": {
+              "HttpMethod": "POST",
+              "RequestParameters": {},
+              "ResourceId": {
+                "Ref": "ApiGatewayResourceGetuploadpart"
+              },
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              },
+              "ApiKeyRequired": false,
+              "AuthorizationType": "NONE",
+              "Integration": {
+                "IntegrationHttpMethod": "POST",
+                "Type": "AWS_PROXY",
+                "Uri": {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":apigateway:",
+                      {
+                        "Ref": "AWS::Region"
+                      },
+                      ":lambda:path/2015-03-31/functions/",
+                      {
+                        "Fn::GetAtt": [
+                          "GetUploadPartLambdaFunction",
+                          "Arn"
+                        ]
+                      },
+                      "/invocations"
+                    ]
+                  ]
+                }
+              },
+              "MethodResponses": []
+            }
+          },
+          "ApiGatewayMethodCompleteuploadPost": {
+            "Type": "AWS::ApiGateway::Method",
+            "Properties": {
+              "HttpMethod": "POST",
+              "RequestParameters": {},
+              "ResourceId": {
+                "Ref": "ApiGatewayResourceCompleteupload"
+              },
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              },
+              "ApiKeyRequired": false,
+              "AuthorizationType": "NONE",
+              "Integration": {
+                "IntegrationHttpMethod": "POST",
+                "Type": "AWS_PROXY",
+                "Uri": {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":apigateway:",
+                      {
+                        "Ref": "AWS::Region"
+                      },
+                      ":lambda:path/2015-03-31/functions/",
+                      {
+                        "Fn::GetAtt": [
+                          "CompleteMultipartUploadLambdaFunction",
+                          "Arn"
+                        ]
+                      },
+                      "/invocations"
+                    ]
+                  ]
+                }
+              },
+              "MethodResponses": []
+            }
+          },
+          "ApiGatewayMethodAbortuploadPost": {
+            "Type": "AWS::ApiGateway::Method",
+            "Properties": {
+              "HttpMethod": "POST",
+              "RequestParameters": {},
+              "ResourceId": {
+                "Ref": "ApiGatewayResourceAbortupload"
+              },
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              },
+              "ApiKeyRequired": false,
+              "AuthorizationType": "NONE",
+              "Integration": {
+                "IntegrationHttpMethod": "POST",
+                "Type": "AWS_PROXY",
+                "Uri": {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":apigateway:",
+                      {
+                        "Ref": "AWS::Region"
+                      },
+                      ":lambda:path/2015-03-31/functions/",
+                      {
+                        "Fn::GetAtt": [
+                          "AbortMultipartUploadLambdaFunction",
+                          "Arn"
+                        ]
+                      },
+                      "/invocations"
+                    ]
+                  ]
+                }
+              },
+              "MethodResponses": []
+            }
+          },
+          "ApiGatewayDeployment1736794800677": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -957,11 +1553,19 @@
               "ApiGatewayMethodPutobject2Options",
               "ApiGatewayMethodPutobject3Options",
               "ApiGatewayMethodGetsignedurlOptions",
+              "ApiGatewayMethodGetuploadidOptions",
+              "ApiGatewayMethodGetuploadpartOptions",
+              "ApiGatewayMethodCompleteuploadOptions",
+              "ApiGatewayMethodAbortuploadOptions",
               "ApiGatewayMethodPutobjectPost",
               "ApiGatewayMethodHellohandlerGet",
               "ApiGatewayMethodPutobject2Post",
               "ApiGatewayMethodPutobject3Post",
-              "ApiGatewayMethodGetsignedurlPost"
+              "ApiGatewayMethodGetsignedurlPost",
+              "ApiGatewayMethodGetuploadidPost",
+              "ApiGatewayMethodGetuploadpartPost",
+              "ApiGatewayMethodCompleteuploadPost",
+              "ApiGatewayMethodAbortuploadPost"
             ]
           },
           "PutObjectLambdaPermissionApiGateway": {
@@ -1149,6 +1753,154 @@
               }
             }
           },
+          "GetUploadIdLambdaPermissionApiGateway": {
+            "Type": "AWS::Lambda::Permission",
+            "Properties": {
+              "FunctionName": {
+                "Fn::GetAtt": [
+                  "GetUploadIdLambdaFunction",
+                  "Arn"
+                ]
+              },
+              "Action": "lambda:InvokeFunction",
+              "Principal": "apigateway.amazonaws.com",
+              "SourceArn": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":execute-api:",
+                    {
+                      "Ref": "AWS::Region"
+                    },
+                    ":",
+                    {
+                      "Ref": "AWS::AccountId"
+                    },
+                    ":",
+                    {
+                      "Ref": "ApiGatewayRestApi"
+                    },
+                    "/*/*"
+                  ]
+                ]
+              }
+            }
+          },
+          "GetUploadPartLambdaPermissionApiGateway": {
+            "Type": "AWS::Lambda::Permission",
+            "Properties": {
+              "FunctionName": {
+                "Fn::GetAtt": [
+                  "GetUploadPartLambdaFunction",
+                  "Arn"
+                ]
+              },
+              "Action": "lambda:InvokeFunction",
+              "Principal": "apigateway.amazonaws.com",
+              "SourceArn": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":execute-api:",
+                    {
+                      "Ref": "AWS::Region"
+                    },
+                    ":",
+                    {
+                      "Ref": "AWS::AccountId"
+                    },
+                    ":",
+                    {
+                      "Ref": "ApiGatewayRestApi"
+                    },
+                    "/*/*"
+                  ]
+                ]
+              }
+            }
+          },
+          "CompleteMultipartUploadLambdaPermissionApiGateway": {
+            "Type": "AWS::Lambda::Permission",
+            "Properties": {
+              "FunctionName": {
+                "Fn::GetAtt": [
+                  "CompleteMultipartUploadLambdaFunction",
+                  "Arn"
+                ]
+              },
+              "Action": "lambda:InvokeFunction",
+              "Principal": "apigateway.amazonaws.com",
+              "SourceArn": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":execute-api:",
+                    {
+                      "Ref": "AWS::Region"
+                    },
+                    ":",
+                    {
+                      "Ref": "AWS::AccountId"
+                    },
+                    ":",
+                    {
+                      "Ref": "ApiGatewayRestApi"
+                    },
+                    "/*/*"
+                  ]
+                ]
+              }
+            }
+          },
+          "AbortMultipartUploadLambdaPermissionApiGateway": {
+            "Type": "AWS::Lambda::Permission",
+            "Properties": {
+              "FunctionName": {
+                "Fn::GetAtt": [
+                  "AbortMultipartUploadLambdaFunction",
+                  "Arn"
+                ]
+              },
+              "Action": "lambda:InvokeFunction",
+              "Principal": "apigateway.amazonaws.com",
+              "SourceArn": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":execute-api:",
+                    {
+                      "Ref": "AWS::Region"
+                    },
+                    ":",
+                    {
+                      "Ref": "AWS::AccountId"
+                    },
+                    ":",
+                    {
+                      "Ref": "ApiGatewayRestApi"
+                    },
+                    "/*/*"
+                  ]
+                ]
+              }
+            }
+          },
           "UploadBucket": {
             "Type": "AWS::S3::Bucket",
             "Properties": {
@@ -1187,31 +1939,55 @@
           "PutObjectLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "PutObjectLambdaVersionrnV6Be6Nls1eroZjteXe8v8h6qomqn30usIGV6dABU"
+              "Ref": "PutObjectLambdaVersionISkwOlz5qAuNZoUYxnKnmG9AgLAQeLL0X1yCauylSc0"
             }
           },
           "HelloLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "HelloLambdaVersionU7dxXYJqzArC0ap88jhhHcksuCZFc6JeKqtufmXDM"
+              "Ref": "HelloLambdaVersionK1o7UKqelhEsFjKX6AJUpKFWvb6Set6G5dDjrU1oTw"
             }
           },
           "PutObject2LambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "PutObject2LambdaVersioneBufeZ9DL5e8hk0eoFfhinB4JZx6oXTw36ChKyx5G2o"
+              "Ref": "PutObject2LambdaVersion7IxmOApdSksDSVzOuxa6whjjqF4nc50oyj9iCUo9Lk"
             }
           },
           "PutObject3LambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "PutObject3LambdaVersionMxQdXzbKU7c5T4wYqzIDZLuQW7A2TfCT51ertnCjA"
+              "Ref": "PutObject3LambdaVersionwfb6lenPjsi8sp9dBbwV4JxxKUNyHqifKRqBd3WIEvs"
             }
           },
           "PreSignedUrlLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "PreSignedUrlLambdaVersiondwpNmQOKX7BK2SmQV22bi2gze9uThPlKNYGIdckns"
+              "Ref": "PreSignedUrlLambdaVersionVnfqB5GJhg4uQd8BBBySPoVQ1eWCI356e169dTyViUA"
+            }
+          },
+          "GetUploadIdLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Ref": "GetUploadIdLambdaVersiongN3Oc7khGvRgMmtT1RrmGiF4ZAW8Gr0rjWZeYpujs"
+            }
+          },
+          "GetUploadPartLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Ref": "GetUploadPartLambdaVersionUsLWQSWNwgnv4IfMIpgHb8c9bgElNNmJHqqyzYTw"
+            }
+          },
+          "CompleteMultipartUploadLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Ref": "CompleteMultipartUploadLambdaVersiona7dLL5Q1HZjcmALjzooPmew5ghbmEKSCBQJ0qSuQ6U"
+            }
+          },
+          "AbortMultipartUploadLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Ref": "AbortMultipartUploadLambdaVersioncRBg9aRY4ArywP2wkpt1wPMzt5Ziu8Uhoh02gRg34"
             }
           },
           "ServiceEndpoint": {
@@ -1364,7 +2140,7 @@
         "timeout": 6,
         "runtime": "nodejs18.x",
         "vpc": {},
-        "versionLogicalId": "PutObjectLambdaVersionrnV6Be6Nls1eroZjteXe8v8h6qomqn30usIGV6dABU"
+        "versionLogicalId": "PutObjectLambdaVersionISkwOlz5qAuNZoUYxnKnmG9AgLAQeLL0X1yCauylSc0"
       },
       "hello": {
         "handler": "handler.hello",
@@ -1402,7 +2178,7 @@
         "timeout": 6,
         "runtime": "nodejs18.x",
         "vpc": {},
-        "versionLogicalId": "HelloLambdaVersionU7dxXYJqzArC0ap88jhhHcksuCZFc6JeKqtufmXDM"
+        "versionLogicalId": "HelloLambdaVersionK1o7UKqelhEsFjKX6AJUpKFWvb6Set6G5dDjrU1oTw"
       },
       "putObject2": {
         "handler": "handler.putObject",
@@ -1440,7 +2216,7 @@
         "timeout": 6,
         "runtime": "nodejs18.x",
         "vpc": {},
-        "versionLogicalId": "PutObject2LambdaVersioneBufeZ9DL5e8hk0eoFfhinB4JZx6oXTw36ChKyx5G2o"
+        "versionLogicalId": "PutObject2LambdaVersion7IxmOApdSksDSVzOuxa6whjjqF4nc50oyj9iCUo9Lk"
       },
       "putObject3": {
         "handler": "objects/API/putObject.handler",
@@ -1478,7 +2254,7 @@
         "timeout": 6,
         "runtime": "nodejs18.x",
         "vpc": {},
-        "versionLogicalId": "PutObject3LambdaVersionMxQdXzbKU7c5T4wYqzIDZLuQW7A2TfCT51ertnCjA"
+        "versionLogicalId": "PutObject3LambdaVersionwfb6lenPjsi8sp9dBbwV4JxxKUNyHqifKRqBd3WIEvs"
       },
       "preSignedUrl": {
         "handler": "objects/API/putPreSignedUrl.handler",
@@ -1516,7 +2292,159 @@
         "timeout": 6,
         "runtime": "nodejs18.x",
         "vpc": {},
-        "versionLogicalId": "PreSignedUrlLambdaVersiondwpNmQOKX7BK2SmQV22bi2gze9uThPlKNYGIdckns"
+        "versionLogicalId": "PreSignedUrlLambdaVersionVnfqB5GJhg4uQd8BBBySPoVQ1eWCI356e169dTyViUA"
+      },
+      "getUploadId": {
+        "handler": "objects/API/MULTIPART/createMultipartUpload.handler",
+        "events": [
+          {
+            "http": {
+              "path": "getUploadId",
+              "method": "post",
+              "cors": {
+                "origins": [
+                  "*"
+                ],
+                "origin": "*",
+                "methods": [
+                  "OPTIONS",
+                  "POST"
+                ],
+                "headers": [
+                  "Content-Type",
+                  "X-Amz-Date",
+                  "Authorization",
+                  "X-Api-Key",
+                  "X-Amz-Security-Token",
+                  "X-Amz-User-Agent"
+                ],
+                "allowCredentials": false
+              },
+              "integration": "AWS_PROXY"
+            }
+          }
+        ],
+        "name": "aws-multipard-upload-dev-getUploadId",
+        "package": {},
+        "memory": 1024,
+        "timeout": 6,
+        "runtime": "nodejs18.x",
+        "vpc": {},
+        "versionLogicalId": "GetUploadIdLambdaVersiongN3Oc7khGvRgMmtT1RrmGiF4ZAW8Gr0rjWZeYpujs"
+      },
+      "getUploadPart": {
+        "handler": "objects/API/MULTIPART/getUploadPart.handler",
+        "events": [
+          {
+            "http": {
+              "path": "getUploadPart",
+              "method": "post",
+              "cors": {
+                "origins": [
+                  "*"
+                ],
+                "origin": "*",
+                "methods": [
+                  "OPTIONS",
+                  "POST"
+                ],
+                "headers": [
+                  "Content-Type",
+                  "X-Amz-Date",
+                  "Authorization",
+                  "X-Api-Key",
+                  "X-Amz-Security-Token",
+                  "X-Amz-User-Agent"
+                ],
+                "allowCredentials": false
+              },
+              "integration": "AWS_PROXY"
+            }
+          }
+        ],
+        "name": "aws-multipard-upload-dev-getUploadPart",
+        "package": {},
+        "memory": 1024,
+        "timeout": 6,
+        "runtime": "nodejs18.x",
+        "vpc": {},
+        "versionLogicalId": "GetUploadPartLambdaVersionUsLWQSWNwgnv4IfMIpgHb8c9bgElNNmJHqqyzYTw"
+      },
+      "completeMultipartUpload": {
+        "handler": "objects/API/MULTIPART/completeMultipartUpload.handler",
+        "events": [
+          {
+            "http": {
+              "path": "completeUpload",
+              "method": "post",
+              "cors": {
+                "origins": [
+                  "*"
+                ],
+                "origin": "*",
+                "methods": [
+                  "OPTIONS",
+                  "POST"
+                ],
+                "headers": [
+                  "Content-Type",
+                  "X-Amz-Date",
+                  "Authorization",
+                  "X-Api-Key",
+                  "X-Amz-Security-Token",
+                  "X-Amz-User-Agent"
+                ],
+                "allowCredentials": false
+              },
+              "integration": "AWS_PROXY"
+            }
+          }
+        ],
+        "name": "aws-multipard-upload-dev-completeMultipartUpload",
+        "package": {},
+        "memory": 1024,
+        "timeout": 6,
+        "runtime": "nodejs18.x",
+        "vpc": {},
+        "versionLogicalId": "CompleteMultipartUploadLambdaVersiona7dLL5Q1HZjcmALjzooPmew5ghbmEKSCBQJ0qSuQ6U"
+      },
+      "abortMultipartUpload": {
+        "handler": "objects/API/multiPartUpload/abortMultipartUpload.handler",
+        "events": [
+          {
+            "http": {
+              "path": "abortUpload",
+              "method": "post",
+              "cors": {
+                "origins": [
+                  "*"
+                ],
+                "origin": "*",
+                "methods": [
+                  "OPTIONS",
+                  "POST"
+                ],
+                "headers": [
+                  "Content-Type",
+                  "X-Amz-Date",
+                  "Authorization",
+                  "X-Api-Key",
+                  "X-Amz-Security-Token",
+                  "X-Amz-User-Agent"
+                ],
+                "allowCredentials": false
+              },
+              "integration": "AWS_PROXY"
+            }
+          }
+        ],
+        "name": "aws-multipard-upload-dev-abortMultipartUpload",
+        "package": {},
+        "memory": 1024,
+        "timeout": 6,
+        "runtime": "nodejs18.x",
+        "vpc": {},
+        "versionLogicalId": "AbortMultipartUploadLambdaVersioncRBg9aRY4ArywP2wkpt1wPMzt5Ziu8Uhoh02gRg34"
       }
     },
     "resources": {
@@ -1577,7 +2505,7 @@
     "artifact": "C:\\gitProjects\\Playground\\bigFileUpload\\aws\\.serverless\\aws-multipard-upload.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/aws-multipard-upload/dev/1736788507166-2025-01-13T17:15:07.166Z",
+    "artifactDirectoryName": "serverless/aws-multipard-upload/dev/1736794806627-2025-01-13T19:00:06.627Z",
     "artifact": "aws-multipard-upload.zip"
   }
 }

@@ -62,6 +62,34 @@ functions:
           path: /getSignedUrl
           method: post
           cors: true
+  getUploadId:
+    handler: objects/API/MULTIPART/createMultipartUpload.handler
+    events:
+      - http:
+          path: /getUploadId
+          method: post
+          cors: true
+  getUploadPart:
+    handler: objects/API/MULTIPART/getUploadPart.handler
+    events:
+      - http:
+          path: /getUploadPart
+          method: post
+          cors: true
+  completeMultipartUpload:
+    handler: objects/API/MULTIPART/completeMultipartUpload.handler
+    events:
+      - http:
+          path: /completeUpload
+          method: post
+          cors: true
+  abortMultipartUpload:
+    handler: objects/API/multiPartUpload/abortMultipartUpload.handler
+    events:
+      - http:
+          path: /abortUpload
+          method: post
+          cors: true 
 
 resources:
   Resources:

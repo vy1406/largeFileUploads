@@ -7,7 +7,7 @@ document.getElementById('multipartInputBtn').addEventListener('click', async () 
     const url = CONFIG.API_URL_BASE;
 
     try {
-        let res = await axios.post(`${url}/getUploadId`, { fileName: fileName });
+        let res = await axios.post(`${url}getUploadId`, { fileName: fileName });
         const uploadId = res.data.uploadId;
         console.log(res);
 
@@ -27,7 +27,7 @@ document.getElementById('multipartInputBtn').addEventListener('click', async () 
             let end = uploadCount * chunkSize;
             let fileBlob = uploadCount < chunkCount ? file.slice(start, end) : file.slice(start);
 
-            let getSignedUrlRes = await axios.post(`${url}/getUploadPart`, {
+            let getSignedUrlRes = await axios.post(`${url}getUploadPart`, {
                 fileName: fileName,
                 partNumber: uploadCount,
                 uploadId: uploadId
@@ -53,7 +53,7 @@ document.getElementById('multipartInputBtn').addEventListener('click', async () 
         }
 
         console.log(multiUploadArray);
-        const completeUpload = await axios.post(`${url}/completeUpload`, {
+        const completeUpload = await axios.post(`${url}completeUpload`, {
             fileName: fileName,
             parts: multiUploadArray,
             uploadId: uploadId
