@@ -95,6 +95,12 @@
         "LogGroupName": "/aws/lambda/aws-multipard-upload-dev-putObject3"
       }
     },
+    "PreSignedUrlLogGroup": {
+      "Type": "AWS::Logs::LogGroup",
+      "Properties": {
+        "LogGroupName": "/aws/lambda/aws-multipard-upload-dev-preSignedUrl"
+      }
+    },
     "IamRoleLambdaExecution": {
       "Type": "AWS::IAM::Role",
       "Properties": {
@@ -188,7 +194,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/aws-multipard-upload/dev/1736740522663-2025-01-13T03:55:22.663Z/aws-multipard-upload.zip"
+          "S3Key": "serverless/aws-multipard-upload/dev/1736788507166-2025-01-13T17:15:07.166Z/aws-multipard-upload.zip"
         },
         "Handler": "API/putObject.handler",
         "Runtime": "nodejs18.x",
@@ -218,7 +224,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/aws-multipard-upload/dev/1736740522663-2025-01-13T03:55:22.663Z/aws-multipard-upload.zip"
+          "S3Key": "serverless/aws-multipard-upload/dev/1736788507166-2025-01-13T17:15:07.166Z/aws-multipard-upload.zip"
         },
         "Handler": "handler.hello",
         "Runtime": "nodejs18.x",
@@ -248,7 +254,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/aws-multipard-upload/dev/1736740522663-2025-01-13T03:55:22.663Z/aws-multipard-upload.zip"
+          "S3Key": "serverless/aws-multipard-upload/dev/1736788507166-2025-01-13T17:15:07.166Z/aws-multipard-upload.zip"
         },
         "Handler": "handler.putObject",
         "Runtime": "nodejs18.x",
@@ -278,7 +284,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/aws-multipard-upload/dev/1736740522663-2025-01-13T03:55:22.663Z/aws-multipard-upload.zip"
+          "S3Key": "serverless/aws-multipard-upload/dev/1736788507166-2025-01-13T17:15:07.166Z/aws-multipard-upload.zip"
         },
         "Handler": "objects/API/putObject.handler",
         "Runtime": "nodejs18.x",
@@ -301,44 +307,84 @@
         "PutObject3LogGroup"
       ]
     },
-    "PutObjectLambdaVersion5RUlHeGGn8C48jbjK86GxZIKm6ku2nmPsZSrJ5mnIjc": {
+    "PreSignedUrlLambdaFunction": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": {
+            "Ref": "ServerlessDeploymentBucket"
+          },
+          "S3Key": "serverless/aws-multipard-upload/dev/1736788507166-2025-01-13T17:15:07.166Z/aws-multipard-upload.zip"
+        },
+        "Handler": "objects/API/putPreSignedUrl.handler",
+        "Runtime": "nodejs18.x",
+        "FunctionName": "aws-multipard-upload-dev-preSignedUrl",
+        "MemorySize": 1024,
+        "Timeout": 6,
+        "Environment": {
+          "Variables": {
+            "bucketName": "vladimir-unique-bucket-yaml-file"
+          }
+        },
+        "Role": {
+          "Fn::GetAtt": [
+            "IamRoleLambdaExecution",
+            "Arn"
+          ]
+        }
+      },
+      "DependsOn": [
+        "PreSignedUrlLogGroup"
+      ]
+    },
+    "PutObjectLambdaVersionrnV6Be6Nls1eroZjteXe8v8h6qomqn30usIGV6dABU": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "PutObjectLambdaFunction"
         },
-        "CodeSha256": "2QElx7X5EHzY4a7YoY4r2N/RjVYvodFyLw7T5owRApc="
+        "CodeSha256": "BMXsHzS3dWo5vSkM8QftdOpfiVOYeiSVLcCVCKOZaXE="
       }
     },
-    "HelloLambdaVersion4dt9oFFJwDk4DiL22HTsOKQnLOWEKxqcEtTIkFhrSo": {
+    "HelloLambdaVersionU7dxXYJqzArC0ap88jhhHcksuCZFc6JeKqtufmXDM": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "HelloLambdaFunction"
         },
-        "CodeSha256": "2QElx7X5EHzY4a7YoY4r2N/RjVYvodFyLw7T5owRApc="
+        "CodeSha256": "BMXsHzS3dWo5vSkM8QftdOpfiVOYeiSVLcCVCKOZaXE="
       }
     },
-    "PutObject2LambdaVersionXmYQyX1hYyes9ed8E8uAnVrMDrlAnAuZVU9GjsrBH9s": {
+    "PutObject2LambdaVersioneBufeZ9DL5e8hk0eoFfhinB4JZx6oXTw36ChKyx5G2o": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "PutObject2LambdaFunction"
         },
-        "CodeSha256": "2QElx7X5EHzY4a7YoY4r2N/RjVYvodFyLw7T5owRApc="
+        "CodeSha256": "BMXsHzS3dWo5vSkM8QftdOpfiVOYeiSVLcCVCKOZaXE="
       }
     },
-    "PutObject3LambdaVersionAQXDqTdzAHZyMIekFlVTG5yKRaRUiV5c2iHK4a5ATPI": {
+    "PutObject3LambdaVersionMxQdXzbKU7c5T4wYqzIDZLuQW7A2TfCT51ertnCjA": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "PutObject3LambdaFunction"
         },
-        "CodeSha256": "2QElx7X5EHzY4a7YoY4r2N/RjVYvodFyLw7T5owRApc="
+        "CodeSha256": "BMXsHzS3dWo5vSkM8QftdOpfiVOYeiSVLcCVCKOZaXE="
+      }
+    },
+    "PreSignedUrlLambdaVersiondwpNmQOKX7BK2SmQV22bi2gze9uThPlKNYGIdckns": {
+      "Type": "AWS::Lambda::Version",
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "PreSignedUrlLambdaFunction"
+        },
+        "CodeSha256": "BMXsHzS3dWo5vSkM8QftdOpfiVOYeiSVLcCVCKOZaXE="
       }
     },
     "ApiGatewayRestApi": {
@@ -408,6 +454,21 @@
           ]
         },
         "PathPart": "putObject3",
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        }
+      }
+    },
+    "ApiGatewayResourceGetsignedurl": {
+      "Type": "AWS::ApiGateway::Resource",
+      "Properties": {
+        "ParentId": {
+          "Fn::GetAtt": [
+            "ApiGatewayRestApi",
+            "RootResourceId"
+          ]
+        },
+        "PathPart": "getSignedUrl",
         "RestApiId": {
           "Ref": "ApiGatewayRestApi"
         }
@@ -593,6 +654,51 @@
         }
       }
     },
+    "ApiGatewayMethodGetsignedurlOptions": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "AuthorizationType": "NONE",
+        "HttpMethod": "OPTIONS",
+        "MethodResponses": [
+          {
+            "StatusCode": "200",
+            "ResponseParameters": {
+              "method.response.header.Access-Control-Allow-Origin": true,
+              "method.response.header.Access-Control-Allow-Headers": true,
+              "method.response.header.Access-Control-Allow-Methods": true
+            },
+            "ResponseModels": {}
+          }
+        ],
+        "RequestParameters": {},
+        "Integration": {
+          "Type": "MOCK",
+          "RequestTemplates": {
+            "application/json": "{statusCode:200}"
+          },
+          "ContentHandling": "CONVERT_TO_TEXT",
+          "IntegrationResponses": [
+            {
+              "StatusCode": "200",
+              "ResponseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'",
+                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+                "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,POST'"
+              },
+              "ResponseTemplates": {
+                "application/json": "#set($origin = $input.params(\"Origin\"))\n#if($origin == \"\") #set($origin = $input.params(\"origin\")) #end\n#if($origin.matches(\".+\")) #set($context.responseOverride.header.Access-Control-Allow-Origin = $origin) #end"
+              }
+            }
+          ]
+        },
+        "ResourceId": {
+          "Ref": "ApiGatewayResourceGetsignedurl"
+        },
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        }
+      }
+    },
     "ApiGatewayMethodPutobjectPost": {
       "Type": "AWS::ApiGateway::Method",
       "Properties": {
@@ -765,7 +871,50 @@
         "MethodResponses": []
       }
     },
-    "ApiGatewayDeployment1736740517448": {
+    "ApiGatewayMethodGetsignedurlPost": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "HttpMethod": "POST",
+        "RequestParameters": {},
+        "ResourceId": {
+          "Ref": "ApiGatewayResourceGetsignedurl"
+        },
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        },
+        "ApiKeyRequired": false,
+        "AuthorizationType": "NONE",
+        "Integration": {
+          "IntegrationHttpMethod": "POST",
+          "Type": "AWS_PROXY",
+          "Uri": {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":apigateway:",
+                {
+                  "Ref": "AWS::Region"
+                },
+                ":lambda:path/2015-03-31/functions/",
+                {
+                  "Fn::GetAtt": [
+                    "PreSignedUrlLambdaFunction",
+                    "Arn"
+                  ]
+                },
+                "/invocations"
+              ]
+            ]
+          }
+        },
+        "MethodResponses": []
+      }
+    },
+    "ApiGatewayDeployment1736788502023": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -778,10 +927,12 @@
         "ApiGatewayMethodHellohandlerOptions",
         "ApiGatewayMethodPutobject2Options",
         "ApiGatewayMethodPutobject3Options",
+        "ApiGatewayMethodGetsignedurlOptions",
         "ApiGatewayMethodPutobjectPost",
         "ApiGatewayMethodHellohandlerGet",
         "ApiGatewayMethodPutobject2Post",
-        "ApiGatewayMethodPutobject3Post"
+        "ApiGatewayMethodPutobject3Post",
+        "ApiGatewayMethodGetsignedurlPost"
       ]
     },
     "PutObjectLambdaPermissionApiGateway": {
@@ -932,6 +1083,43 @@
         }
       }
     },
+    "PreSignedUrlLambdaPermissionApiGateway": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "PreSignedUrlLambdaFunction",
+            "Arn"
+          ]
+        },
+        "Action": "lambda:InvokeFunction",
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition"
+              },
+              ":execute-api:",
+              {
+                "Ref": "AWS::Region"
+              },
+              ":",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":",
+              {
+                "Ref": "ApiGatewayRestApi"
+              },
+              "/*/*"
+            ]
+          ]
+        }
+      }
+    },
     "UploadBucket": {
       "Type": "AWS::S3::Bucket",
       "Properties": {
@@ -970,25 +1158,31 @@
     "PutObjectLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "PutObjectLambdaVersion5RUlHeGGn8C48jbjK86GxZIKm6ku2nmPsZSrJ5mnIjc"
+        "Ref": "PutObjectLambdaVersionrnV6Be6Nls1eroZjteXe8v8h6qomqn30usIGV6dABU"
       }
     },
     "HelloLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "HelloLambdaVersion4dt9oFFJwDk4DiL22HTsOKQnLOWEKxqcEtTIkFhrSo"
+        "Ref": "HelloLambdaVersionU7dxXYJqzArC0ap88jhhHcksuCZFc6JeKqtufmXDM"
       }
     },
     "PutObject2LambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "PutObject2LambdaVersionXmYQyX1hYyes9ed8E8uAnVrMDrlAnAuZVU9GjsrBH9s"
+        "Ref": "PutObject2LambdaVersioneBufeZ9DL5e8hk0eoFfhinB4JZx6oXTw36ChKyx5G2o"
       }
     },
     "PutObject3LambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "PutObject3LambdaVersionAQXDqTdzAHZyMIekFlVTG5yKRaRUiV5c2iHK4a5ATPI"
+        "Ref": "PutObject3LambdaVersionMxQdXzbKU7c5T4wYqzIDZLuQW7A2TfCT51ertnCjA"
+      }
+    },
+    "PreSignedUrlLambdaFunctionQualifiedArn": {
+      "Description": "Current Lambda function version",
+      "Value": {
+        "Ref": "PreSignedUrlLambdaVersiondwpNmQOKX7BK2SmQV22bi2gze9uThPlKNYGIdckns"
       }
     },
     "ServiceEndpoint": {
