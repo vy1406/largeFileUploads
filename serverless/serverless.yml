@@ -26,65 +26,57 @@ custom:
   bucketName: vladimir-unique-bucket-yaml-file
 
 functions:
+
+  hello:
+    handler: lambdas/hello.handler
+    events:
+      - http:
+          path: /helloHandler
+          method: get
+          cors: true
+ 
   putObject:
-    handler: API/putObject.handler
+    handler: lambdas/putObject.handler
     events:
       - http:
           path: /putObject
           method: post
           cors: true
 
-  hello:
-    handler: handler.hello
-    events:
-      - http:
-          path: /helloHandler
-          method: get
-          cors: true
-  putObject2:
-    handler: handler.putObject
-    events:
-      - http:
-          path: /putObject2
-          method: post
-          cors: true
-  putObject3:
-    handler: objects/API/putObject.handler
-    events:
-      - http:
-          path: /putObject3
-          method: post
-          cors: true
   preSignedUrl:
-    handler: objects/API/putPreSignedUrl.handler
+    handler: lambdas/putPreSignedUrl.handler
     events:
       - http:
           path: /getSignedUrl
           method: post
           cors: true
+
   getUploadId:
-    handler: objects/API/MULTIPART/createMultipartUpload.handler
+    handler: lambdas/createMultipartUpload.handler
     events:
       - http:
           path: /getUploadId
           method: post
           cors: true
+
   getUploadPart:
-    handler: objects/API/MULTIPART/getUploadPart.handler
+    handler: lambdas/getUploadPart.handler
     events:
       - http:
           path: /getUploadPart
           method: post
           cors: true
+
   completeMultipartUpload:
-    handler: objects/API/MULTIPART/completeMultipartUpload.handler
+    handler: lambdas/completeMultipartUpload.handler
     events:
       - http:
           path: /completeUpload
           method: post
           cors: true
+          
   abortMultipartUpload:
-    handler: objects/API/MULTIPART/abortMultipartUpload.handler
+    handler: lambdas/abortMultipartUpload.handler
     events:
       - http:
           path: /abortUpload
@@ -111,3 +103,20 @@ resources:
                 - "*"
               ExposedHeaders:
                 - ETag  
+
+package:
+  include:
+    - handler.js
+    - lambdas/**      
+    - package.json   
+    - node_modules/**
+  exclude:
+    - handler.js
+    - frontend/**
+    - .serverless/**
+    - .gitignore
+    - .git/**
+    - .npmignore
+    - env.js
+    - frontend.env.js
+    
