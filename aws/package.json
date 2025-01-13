@@ -3,8 +3,30 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+"scripts": {
+    "createBucket": "node ./bucket/CRUD/createBucket.js",
+    "deleteBucket": "node ./bucket/CRUD/deleteBucket.js",
+    "getBucketLocation": "node ./bucket/CRUD/getBucketLocation.js",
+    "getBucketWebsite": "node ./bucket/CRUD/getBucketWebsite.js",
+    "listBucket": "node ./bucket/CRUD/listBucket.js",
+    
+    "getBucketAcl": "node ./bucket/ACL/getBucketAcl.js",
+    
+    "deleteBucketCors": "node ./bucket/CORS/deleteBucketCors.js",
+    "getBucketCors": "node ./bucket/CORS/getBucketCors.js",
+    "putBucketCors": "node ./bucket/CORS/putBucketCors.js",
+    
+    "getBucketPolicy": "node ./bucket/POLICY/getBucketPolicy.js",
+    "putBucketPolicy": "node ./bucket/POLICY/putBucketPolicy.js",
+    "deleteBucketPolicy": "node ./bucket/POLICY/deleteBucketPolicy.js",
+    
+    "allowPublic": "node ./bucket/PUBLIC_ACCESS/allowPublic.js",
+    "disablePublic": "node ./bucket/PUBLIC_ACCESS/disablePublic.js",
+    
+    "deleteObject": "node ./objects/API/deleteObject.js",
+    "deleteObjects": "node ./objects/API/deleteObjects.js",
+    "getObjectPresigned": "node ./objects/API/getObjectPresigned.js",
+    "listObjects": "node ./objects/API/listObjects.js"
   },
   "keywords": [],
   "author": "",
