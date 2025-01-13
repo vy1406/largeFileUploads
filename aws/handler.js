@@ -1,4 +1,7 @@
 'use strict';
+const AWS = require('./aws-config')
+
+const s3 = new AWS.S3()
 
 module.exports.hello = async (event) => {
   return {
