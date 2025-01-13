@@ -1,5 +1,5 @@
 const AWS = require('aws-sdk');
-const CONSTANTS = require('./env');
+// const CONSTANTS = require('./env');
 
 // AWS.config.update({
 //     accessKeyId: CONSTANTS.AWS_ACCESS_KEY,

@@ -7,3 +7,4 @@ medium.txt
 .env
 env.js
 frontend.env.js
+.serverless

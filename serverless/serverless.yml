@@ -103,3 +103,20 @@ resources:
                 - "*"
               ExposedHeaders:
                 - ETag  
+
+package:
+  include:
+    - handler.js
+    - lambdas/**      
+    - package.json   
+    - node_modules/**
+  exclude:
+    - handler.js
+    - frontend/**
+    - .serverless/**
+    - .gitignore
+    - .git/**
+    - .npmignore
+    - env.js
+    - frontend.env.js
+    
