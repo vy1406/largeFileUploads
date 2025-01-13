@@ -1,13 +1,14 @@
 const AWS = require('../aws-config')
+const CONSTANTS = require('../env')
 
 const s3 = new AWS.S3()
 
 var param = {
-    Bucket: process.env.AWS_CURRENT_BUCKET,
+    Bucket: CONSTANTS.AWS_CURRENT_BUCKET,
     Delete: {
         Objects: [
             {
-                Key: process.env.AWS_CURRENT_OBJECT
+                Key: CONSTANTS.AWS_CURRENT_OBJECT
             }
         ]
     }

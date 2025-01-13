@@ -4,7 +4,7 @@ document.getElementById('multipartInputBtn').addEventListener('click', async () 
     const fileName = file.name;
     const fileSize = file.size;
 
-    const url = CONFIG.API_URL;
+    const url = CONFIG.API_URL_BASE;
 
     try {
         let res = await axios.post(`${url}/getUploadId`, { fileName: fileName });

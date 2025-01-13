@@ -1,8 +1,9 @@
-const AWS = require('../../aws-config')
+const AWS = require('../../aws-config');
+const CONSTANTS = require('../../env');
 
 const s3 = new AWS.S3()
 
-const uniqueBucketName = process.env.AWS_CURRENT_BUCKET;
+const uniqueBucketName = CONSTANTS.AWS_CURRENT_BUCKET;
 var param = {
     Bucket: uniqueBucketName,
     "CORSConfiguration": {

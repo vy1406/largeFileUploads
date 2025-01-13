@@ -3,7 +3,7 @@ document.getElementById('presignedUrlBtn').addEventListener('click', () => {
     const file = presignedUrl_fileInput.files[0];
     const fileName = file.name;
 
-    const url = CONFIG.API_URL;
+    const url = CONFIG.API_URL_BASE;
 
     axios
         .post(url, { fileName: fileName })

@@ -1,10 +1,11 @@
 const AWS = require('../aws-config')
+const CONSTANTS = require('../env')
 
 const s3 = new AWS.S3()
 
 var param = {
-    Bucket: process.env.AWS_CURRENT_BUCKET,
-    Key: process.env.AWS_CURRENT_OBJECT,
+    Bucket: CONSTANTS.AWS_CURRENT_BUCKET,
+    Key: CONSTANTS.AWS_CURRENT_OBJECT,
     Expires: 60 // seconds, default is 900
 }
 
