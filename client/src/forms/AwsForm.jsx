@@ -23,6 +23,7 @@ function AwsUploadS3() {
       fileInputRef.current.value = "";
     }
     setStatus("")
+    toast.dismiss()
   }
 
   // means it wont be formData, cuz otherwise i need to make more changes. 

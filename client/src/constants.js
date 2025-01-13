@@ -15,8 +15,14 @@ export const LANGS = {
     UPLOAD_SUCCESS: "File uploaded successfully",
     UPLOAD_SUCCESS_S3: "File uploaded to S3 successfully",
     UPLOAD_ERROR_S3: "Error uploading file to S3",
+    ERROR_PRESIGNED_URL: "Error getting pre-signed URL",
     FILE_TOO_LARGE: 'File is too large',
     UPLOAD_SINGLE_FILE_S3: "Upload single file to S3",
+    UPLOAD_SIGNED_TO_S3: "Upload signed file to S3",
+    GET_PRESIGNED_URL: "Generate presigned url",
+    GET_PRESIGNED_FORM_TITLE: "Get pre-signed URL for S3",
+    PRE_SIGNED_URL_GENERATED: "<< Pre-signed URL generated >>",
+    PRE_SIGNED_URL: "Pre-signed URL:"
 }
 
 const AWS_BASE = "https://7g0tifu0t3.execute-api.us-east-1.amazonaws.com/dev"
