@@ -218,7 +218,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/aws-multipard-upload/dev/1736794806627-2025-01-13T19:00:06.627Z/aws-multipard-upload.zip"
+          "S3Key": "serverless/aws-multipard-upload/dev/1736796089308-2025-01-13T19:21:29.308Z/aws-multipard-upload.zip"
         },
         "Handler": "API/putObject.handler",
         "Runtime": "nodejs18.x",
@@ -248,7 +248,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/aws-multipard-upload/dev/1736794806627-2025-01-13T19:00:06.627Z/aws-multipard-upload.zip"
+          "S3Key": "serverless/aws-multipard-upload/dev/1736796089308-2025-01-13T19:21:29.308Z/aws-multipard-upload.zip"
         },
         "Handler": "handler.hello",
         "Runtime": "nodejs18.x",
@@ -278,7 +278,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/aws-multipard-upload/dev/1736794806627-2025-01-13T19:00:06.627Z/aws-multipard-upload.zip"
+          "S3Key": "serverless/aws-multipard-upload/dev/1736796089308-2025-01-13T19:21:29.308Z/aws-multipard-upload.zip"
         },
         "Handler": "handler.putObject",
         "Runtime": "nodejs18.x",
@@ -308,7 +308,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/aws-multipard-upload/dev/1736794806627-2025-01-13T19:00:06.627Z/aws-multipard-upload.zip"
+          "S3Key": "serverless/aws-multipard-upload/dev/1736796089308-2025-01-13T19:21:29.308Z/aws-multipard-upload.zip"
         },
         "Handler": "objects/API/putObject.handler",
         "Runtime": "nodejs18.x",
@@ -338,7 +338,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/aws-multipard-upload/dev/1736794806627-2025-01-13T19:00:06.627Z/aws-multipard-upload.zip"
+          "S3Key": "serverless/aws-multipard-upload/dev/1736796089308-2025-01-13T19:21:29.308Z/aws-multipard-upload.zip"
         },
         "Handler": "objects/API/putPreSignedUrl.handler",
         "Runtime": "nodejs18.x",
@@ -368,7 +368,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/aws-multipard-upload/dev/1736794806627-2025-01-13T19:00:06.627Z/aws-multipard-upload.zip"
+          "S3Key": "serverless/aws-multipard-upload/dev/1736796089308-2025-01-13T19:21:29.308Z/aws-multipard-upload.zip"
         },
         "Handler": "objects/API/MULTIPART/createMultipartUpload.handler",
         "Runtime": "nodejs18.x",
@@ -398,7 +398,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/aws-multipard-upload/dev/1736794806627-2025-01-13T19:00:06.627Z/aws-multipard-upload.zip"
+          "S3Key": "serverless/aws-multipard-upload/dev/1736796089308-2025-01-13T19:21:29.308Z/aws-multipard-upload.zip"
         },
         "Handler": "objects/API/MULTIPART/getUploadPart.handler",
         "Runtime": "nodejs18.x",
@@ -428,7 +428,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/aws-multipard-upload/dev/1736794806627-2025-01-13T19:00:06.627Z/aws-multipard-upload.zip"
+          "S3Key": "serverless/aws-multipard-upload/dev/1736796089308-2025-01-13T19:21:29.308Z/aws-multipard-upload.zip"
         },
         "Handler": "objects/API/MULTIPART/completeMultipartUpload.handler",
         "Runtime": "nodejs18.x",
@@ -458,9 +458,9 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/aws-multipard-upload/dev/1736794806627-2025-01-13T19:00:06.627Z/aws-multipard-upload.zip"
+          "S3Key": "serverless/aws-multipard-upload/dev/1736796089308-2025-01-13T19:21:29.308Z/aws-multipard-upload.zip"
         },
-        "Handler": "objects/API/multiPartUpload/abortMultipartUpload.handler",
+        "Handler": "objects/API/MULTIPART/abortMultipartUpload.handler",
         "Runtime": "nodejs18.x",
         "FunctionName": "aws-multipard-upload-dev-abortMultipartUpload",
         "MemorySize": 1024,
@@ -561,7 +561,7 @@
         "CodeSha256": "3PI8cAOX5b9Con66RVLGi61DA1gsC//Zmulf/AmmEn8="
       }
     },
-    "AbortMultipartUploadLambdaVersioncRBg9aRY4ArywP2wkpt1wPMzt5Ziu8Uhoh02gRg34": {
+    "AbortMultipartUploadLambdaVersionwHJE7JdgXVMptf6w02T5Me0QSxxeeWoKJx1LluRzdZw": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
@@ -1510,7 +1510,7 @@
         "MethodResponses": []
       }
     },
-    "ApiGatewayDeployment1736794800677": {
+    "ApiGatewayDeployment1736796083714": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -1958,7 +1958,7 @@
     "AbortMultipartUploadLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "AbortMultipartUploadLambdaVersioncRBg9aRY4ArywP2wkpt1wPMzt5Ziu8Uhoh02gRg34"
+        "Ref": "AbortMultipartUploadLambdaVersionwHJE7JdgXVMptf6w02T5Me0QSxxeeWoKJx1LluRzdZw"
       }
     },
     "ServiceEndpoint": {

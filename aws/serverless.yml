@@ -84,7 +84,7 @@ functions:
           method: post
           cors: true
   abortMultipartUpload:
-    handler: objects/API/multiPartUpload/abortMultipartUpload.handler
+    handler: objects/API/MULTIPART/abortMultipartUpload.handler
     events:
       - http:
           path: /abortUpload
