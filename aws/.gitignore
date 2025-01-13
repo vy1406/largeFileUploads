@@ -5,5 +5,5 @@ dist
 steps.txt
 medium.txt
 .env
-
+env.js
 frontend.env.js

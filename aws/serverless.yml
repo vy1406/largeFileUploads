@@ -55,6 +55,13 @@ functions:
           path: /putObject3
           method: post
           cors: true
+  preSignedUrl:
+    handler: objects/API/putPreSignedUrl.handler
+    events:
+      - http:
+          path: /getSignedUrl
+          method: post
+          cors: true
 
 resources:
   Resources:
