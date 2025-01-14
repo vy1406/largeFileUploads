@@ -1,6 +1,6 @@
 import { useMemo, useRef, useState } from "react"
 import { toast } from "react-toastify"
-import { LANGS } from "../constants"
+import { LANGS, SERVER } from "../constants"
 import Progress from "../components/Progress";
 
 function MultipleFilesForm() {
@@ -63,7 +63,7 @@ function MultipleFilesForm() {
           formData.append("originalname", file.name);
   
           try {
-            await fetch("http://localhost:3400/uploadSingleLarge", {
+            await fetch(SERVER.UPLOAD_SINGLE_LARGE, {
               method: "POST",
               body: formData,
             });
@@ -93,7 +93,7 @@ function MultipleFilesForm() {
       formData.append("files", file);
     });
 
-    fetch("http://localhost:3400/uploadMultipleSmall", {
+    fetch(SERVER.UPLOAD_MULTIPLE_SMALL, {
       method: "POST",
       body: formData,
     })

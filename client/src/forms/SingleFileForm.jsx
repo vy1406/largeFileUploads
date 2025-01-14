@@ -1,6 +1,6 @@
 import { useMemo, useRef, useState } from "react"
 import { toast } from "react-toastify"
-import { LANGS } from "../constants"
+import { LANGS, SERVER } from "../constants"
 import Progress from "../components/Progress";
 
 function SingleFileForm() {
@@ -55,7 +55,7 @@ function SingleFileForm() {
         formData.append("totalChunks", totalChunks);
         formData.append("originalname", file.name);
 
-        fetch("http://localhost:3400/uploadSingleLarge", {
+        fetch(SERVER.UPLOAD_SINGLE_LARGE, {
           method: "POST",
           body: formData,
         })
@@ -99,7 +99,7 @@ function SingleFileForm() {
 
     try {
 
-      fetch("http://localhost:3400/uploadSingleSmall", {
+      fetch(SERVER.UPLOAD_SINGLE_SMALL, {
         method: "POST",
         body: formData,
 

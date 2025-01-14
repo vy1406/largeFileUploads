@@ -1,12 +1,12 @@
 import { toast } from "react-toastify"
-import { LANGS } from "../constants"
+import { LANGS, SERVER } from "../constants"
 
 
 function TestConnectionBtn() {
 
     const handleOnTestConnection = async () => {
         try {
-            const response = await fetch("http://localhost:3400/test")
+            const response = await fetch(SERVER.TEST)
             const data = await response.json()
             console.log(data)
             toast.success(data.message)
