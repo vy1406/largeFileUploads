@@ -74,6 +74,7 @@ function MultipleFilesForm() {
             end = start + chunkSize;
             uploadNextChunk();
           } catch (error) {
+            console.error("Error uploading file:", error);
             toast.error(LANGS.UPLOAD_ERROR);
             return;
           }
