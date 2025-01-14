@@ -1,6 +1,3 @@
-### First Version: **README.md**
-
-```markdown
 # AWS S3 Project: Server, Client, and Serverless
 
 This project demonstrates the use of **AWS S3** operations, including file uploads, bucket management, and serverless deployment with Serverless Framework.
