@@ -11,7 +11,12 @@ This project demonstrates the use of **AWS S3** operations, including file uploa
      ```bash
      aws configure
      ```
+   - Verify:
+     ```bash
+     aws iam list-users
+     ```
      Ensure CLI is installed: `aws --version`.
+
 
 2. **Node.js and Dependencies:**
    - Install Node.js.
@@ -22,62 +27,54 @@ This project demonstrates the use of **AWS S3** operations, including file uploa
 
 ---
 
-## Project Structure
+## Components
 
 ### 1. AWS Folder
-Handles S3 operations via Node.js scripts.
-
+Scripts for S3 operations like bucket management, object manipulation, and CORS updates.
 #### Scripts (package.json):
 - **Bucket Management:**
-  - Create bucket: `npm run createBucket`
-  - Delete bucket: `npm run deleteBucket`
-  - List buckets: `npm run listBucket`
-  - Get bucket location: `npm run getBucketLocation`
+  - `npm run createBucket`
+  - `npm run deleteBucket`
+  - `npm run listBucket`
+  - `npm run getBucketLocation`
 
 - **CORS Management:**
-  - Add CORS: `npm run putBucketCors`
-  - Get CORS: `npm run getBucketCors`
-  - Delete CORS: `npm run deleteBucketCors`
+  - `npm run putBucketCors`
+  - `npm run getBucketCors`
+  - `npm run deleteBucketCors`
 
 - **Policy Management:**
-  - Add bucket policy: `npm run putBucketPolicy`
-  - Get bucket policy: `npm run getBucketPolicy`
-  - Delete bucket policy: `npm run deleteBucketPolicy`
+  - `npm run putBucketPolicy`
+  - `npm run getBucketPolicy`
+  - `npm run deleteBucketPolicy`
 
 - **Object Management:**
-  - Upload object with presigned URL: `npm run getObjectPresigned`
-  - List objects: `npm run listObjects`
-  - Delete objects: `npm run deleteObjects`
+  - `npm run getObjectPresigned`
+  - `npm run listObjects`
+  - `npm run deleteObjects`
 
 ---
 
-### 2. Local Server
-A simple Node.js server handles file uploads.
 
-#### Features:
-- Upload single large file in chunks.
-- Upload single small file.
-- Upload multiple small files.
+### 2. Node.js Server
+Handles local file uploads.
 
-#### Run Server:
+
+#### Run ( server folder ):
+
 ```bash
-node index.js
+npm run start
 ```
 
 ---
 
-### 3. Client
-A Vite-based frontend with buttons to test file uploads.
+### 3. Serverless Framework ( serverless folder )
+Deploy Lambda functions for S3 operations.
 
-#### Run Client:
-```bash
-npm run dev
-```
-
----
-
-### 4. Serverless
-Contains Lambda functions for serverless file operations.
+#### Setup ( if not isntalled ):
+  ```bash
+  npm install -g serverless@2.28.0
+  ```
 
 #### Deploy:
 ```bash
@@ -86,45 +83,27 @@ npm run sls:deploy
 
 ---
 
-## Configuration
+### 4. Client ( client folder )
+Vite-based frontend for testing.
 
-### AWS Keys:
-- Add keys to environment variables:
-  ```javascript
-  const CONSTANTS = {
-      AWS_REGION: "us-east-1",
-      AWS_CURRENT_BUCKET: "your-bucket-name",
-  };
-  ```
-- Avoid hardcoding keys. Use AWS CLI or `.env` files.
-
-### Static Website Hosting:
-- Enable website hosting in the bucket properties.
-- Add `index.html` for hosting.
+#### Run:
+```bash
+npm run dev
+```
 
 ---
+**Credit to:**  
+Rahul Ahire  
+Was based on his project. 
+Rahul explains it very nice!
+Thank you Rahul!
 
-## Example Commands
-1. **Create a bucket:**
-   ```bash
-   node ./bucket/CRUD/createBucket.js
-   ```
+Repo: [Github](https://github.com/MeRahulAhire/S3-Ultimate-Guide/tree/master)
 
-2. **Delete a bucket:**
-   ```bash
-   node ./bucket/CRUD/deleteBucket.js
-   ```
+YouTube: [S3 Tutorial](https://www.youtube.com/watch?v=6VHc41idHZs)  
 
-3. **Upload files:**
-   - Use client buttons or server APIs.
+## Helpful Links
+- [AWS Docs](https://docs.aws.amazon.com/AmazonS3/latest/API/API_Operations_Amazon_Simple_Storage_Service.html)
+- [Serverless Docs](https://www.serverless.com/framework/docs/)
 
-4. **Deploy serverless:**
-   ```bash
-   serverless deploy
-   ```
 
----
-
-## Resources
-- [AWS S3 Documentation](https://docs.aws.amazon.com/AmazonS3/latest/API/API_Operations_Amazon_Simple_Storage_Service.html)
-- [Serverless Framework Documentation](https://www.serverless.com/framework/docs/)
