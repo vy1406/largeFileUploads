@@ -21,8 +21,8 @@ document.getElementById('putObjectBtn').addEventListener('click', () => {
 
         axios
             .post(url, dataInfo, config)
-            .then((r) => {
-                console.log(r);
+            .then((response) => {
+                console.log(response.data);
             })
             .catch((err) => {
                 console.error(err);

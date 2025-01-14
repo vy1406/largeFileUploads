@@ -23,7 +23,7 @@ exports.handler = async (event) => {
                 'Access-Control-Allow-Origin': '*',
                 'Access-Control-Allow-Credentials': true
             },
-            body: `file Uploaded`
+            body: JSON.stringify({ message: 'File uploaded successfully' })
         };
     } catch (err) {
         console.log(err);
