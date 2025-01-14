@@ -18,6 +18,7 @@ export const LANGS = {
     ERROR_PRESIGNED_URL: "Error getting pre-signed URL",
     FILE_TOO_LARGE: 'File is too large',
     UPLOAD_SINGLE_FILE_S3: "Upload single file to S3",
+    UPLOAD_LARGE_FILE_S3: "Upload large single file to S3",
     UPLOAD_SIGNED_TO_S3: "Upload signed file to S3",
     GET_PRESIGNED_URL: "Generate presigned url",
     GET_PRESIGNED_FORM_TITLE: "Get pre-signed URL for S3",

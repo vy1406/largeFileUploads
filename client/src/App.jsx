@@ -5,6 +5,7 @@ import TestConnectionBtn from "./components/TestConnection"
 import TestConnectionBtnS3 from "./components/TestConnectionS3"
 import AwsUploadS3 from "./forms/AwsForm"
 import AwsPreSignedUrl from "./forms/AwsPreSignedUrl"
+import AwsMultipartForm from "./forms/AwsMultipartForm"
 
 function App() {
 
@@ -12,6 +13,7 @@ function App() {
     <div className="container mx-auto p-4 flex flex-col items-center gap-6">
       {/* <MultipleFilesForm />
       <SingleFileForm /> */}
+      <AwsMultipartForm />
       <AwsPreSignedUrl />
       <AwsUploadS3 />
       <TestConnectionBtn />
