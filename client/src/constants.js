@@ -3,6 +3,7 @@ export const LANGS = {
     UPLOAD_SMALL: "Will upload with base64",
     SELECTED: "Selected:",
     CLEAR: "Remove file",
+    ABORT: "Abort upload",
     UPLOAD: "Upload",
     TEST: 'Test nodejs connection',
     TEST_S3: 'Test S3 connection',
@@ -23,7 +24,10 @@ export const LANGS = {
     GET_PRESIGNED_URL: "Generate presigned url",
     GET_PRESIGNED_FORM_TITLE: "Get pre-signed URL for S3",
     PRE_SIGNED_URL_GENERATED: "<< Pre-signed URL generated >>",
-    PRE_SIGNED_URL: "Pre-signed URL:"
+    PRE_SIGNED_URL: "Pre-signed URL:",
+    ABORT_SUCCESS: "Upload aborted successfully",
+    ABORT_ERROR: "Error aborting upload",
+    NO_FILE_SELECTED: "No file selected",
 }
 
 const AWS_BASE = "https://7g0tifu0t3.execute-api.us-east-1.amazonaws.com/dev"

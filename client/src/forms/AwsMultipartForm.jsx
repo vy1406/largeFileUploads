@@ -24,11 +24,48 @@ function AwsMultipartForm() {
     setStatus("")
   }
 
+  const handleAbort = async () => {
+    const uploadId = sessionStorage.getItem("uploadId");
+
+    if (!uploadId) {
+      toast.error("No upload in progress");
+      return;
+    }
+    if (!file) {
+      toast.error(LANGS.NO_FILE_SELECTED);
+      return;
+    }
+
+    const fileName = file.name;
+
+    try {
+      const response = await fetch(`${AWS.ABORT_MULTIPART_UPLOAD}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ fileName, uploadId }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message);
+      }
+
+      toast.success(LANGS.ABORT_SUCCESS);
+      setStatus("Upload aborted");
+      sessionStorage.removeItem("uploadId");
+      setProgress(0);
+    } catch (error) {
+      console.error("Error aborting upload:", error);
+      toast.error(LANGS.ABORT_ERROR);
+    }
+    handleClear()
+  }
+
   const handleOnSubmit = (e) => {
     e.preventDefault()
-
-      uploadLargeFile()
-
+    uploadLargeFile()
   }
 
   const uploadLargeFile = async () => {
@@ -149,6 +186,14 @@ function AwsMultipartForm() {
           className="bg-red-500 text-white p-2 rounded mt-2"
         >
           {LANGS.CLEAR}
+        </button>
+        <button
+          type="button"
+          onClick={handleAbort}
+          disabled={file === null}
+          className="bg-red-500 text-white p-2 rounded mt-2"
+        >
+          {LANGS.ABORT}
         </button>
         <button
           type="submit"
